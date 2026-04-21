@@ -1,0 +1,1978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ananda Bathena — Composer & Sound Designer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,700;0,900;1,300&display=swap" rel="stylesheet">
+    <style>
+
+    /* ============================================================
+       RESET & TOKENS
+       ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+        --bg:         #161614;
+        --surface:    #1D1D1B;
+        --surface-2:  #242420;
+        --border:     #38382E;
+        --gold:       #C49B3C;
+        --gold-light: #E8B84A;
+        --text:       #E8E5DC;
+        --text-muted: #A8A699;
+        --text-dim:   #6B6A5A;
+        --nav-h:      52px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 300;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+    }
+
+    /* ============================================================
+       NAV
+       ============================================================ */
+    #nav {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        height: var(--nav-h);
+        z-index: 500;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 48px;
+        transition: background 0.4s, border-color 0.4s;
+        border-bottom: 1px solid transparent;
+    }
+
+    #nav.scrolled {
+        background: rgba(22,22,20,0.97);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border-bottom-color: var(--border);
+    }
+
+    .nav-logo {
+        font-weight: 900;
+        font-size: 17px;
+        letter-spacing: 0.07em;
+        color: var(--text);
+        text-decoration: none;
+        text-transform: uppercase;
+    }
+
+    .nav-logo em { color: var(--gold); font-style: normal; }
+
+    .nav-links {
+        display: flex;
+        gap: 36px;
+        list-style: none;
+    }
+
+    .nav-links a {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--text);
+        text-decoration: none;
+        opacity: 0.45;
+        transition: opacity 0.2s;
+    }
+
+    .nav-links a:hover { opacity: 1; }
+
+    /* ============================================================
+       SHARED
+       ============================================================ */
+    .section-number {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.4em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 32px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .section-number::after {
+        content: '';
+        display: block;
+        width: 56px;
+        height: 1px;
+        background: var(--border);
+    }
+
+    /* ============================================================
+       ABOUT — opening / hero section
+       ============================================================ */
+    #about {
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        gap: 56px;
+        padding: calc(var(--nav-h) + 48px) 48px 64px;
+        max-width: 1440px;
+        margin: 0 auto;
+    }
+
+    .about-left {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-self: stretch;
+    }
+
+    .about-photo-wrap {
+        position: relative;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .about-photo-wrap img {
+        width: 100%;
+        flex: 1;
+        object-fit: cover;
+        display: block;
+        filter: grayscale(12%) contrast(1.06);
+    }
+
+    .about-photo-stamp {
+        position: absolute;
+        bottom: 0; left: 0; right: 0;
+        background: var(--gold);
+        color: var(--bg);
+        font-size: 9px;
+        font-weight: 900;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        padding: 9px 12px;
+        text-align: center;
+    }
+
+    .about-stats {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        border: 1px solid var(--border);
+        border-top: none;
+    }
+
+    .about-stat {
+        padding: 16px 8px;
+        text-align: center;
+        border-right: 1px solid var(--border);
+    }
+
+    .about-stat:last-child { border-right: none; }
+
+    .about-stat-num {
+        font-weight: 900;
+        font-size: 19px;
+        color: var(--gold);
+        line-height: 1;
+        margin-bottom: 4px;
+    }
+
+    .about-stat-lbl {
+        font-size: 8px;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+    }
+
+    .about-right {}
+
+    .about-name {
+        font-weight: 900;
+        font-size: clamp(2.4rem, 4.5vw, 5.5rem);
+        line-height: 0.9;
+        letter-spacing: -0.02em;
+        text-transform: uppercase;
+        color: var(--text);
+        margin-bottom: 16px;
+    }
+
+    .about-name span { color: var(--gold); }
+
+    .about-tagline {
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.32em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        margin-bottom: 24px;
+        padding-bottom: 24px;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .about-bio {
+        font-size: clamp(0.85rem, 0.95vw, 1rem);
+        line-height: 1.85;
+        color: var(--text);
+        margin-bottom: 16px;
+        font-weight: 300;
+    }
+
+    .about-bio strong { color: var(--text); font-weight: 400; }
+
+    .about-badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 24px;
+    }
+
+    .about-badge {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--gold);
+    }
+
+    .about-badge::after {
+        content: ' ·';
+        color: var(--text-dim);
+        margin-left: 6px;
+    }
+
+    .about-badge:last-child::after { content: ''; margin-left: 0; }
+
+
+    /* ============================================================
+       WORK — thumbnail card grid
+       ============================================================ */
+    #work {
+        padding: 72px 48px;
+        border-top: 1px solid var(--border);
+        max-width: 1440px;
+        margin: 0 auto;
+    }
+
+    .work-header {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        margin-bottom: 48px;
+        padding-bottom: 24px;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .work-big-title {
+        font-weight: 900;
+        font-size: clamp(2.8rem, 5.5vw, 6.5rem);
+        line-height: 0.9;
+        letter-spacing: -0.025em;
+        text-transform: uppercase;
+        color: var(--text);
+    }
+
+    .work-header-label {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.4em;
+        text-transform: uppercase;
+        color: var(--gold);
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .work-header-label::before {
+        content: '';
+        display: block;
+        width: 56px;
+        height: 1px;
+        background: var(--border);
+    }
+
+    /* Search / filter / sort controls */
+    .work-controls {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 32px;
+        flex-wrap: wrap;
+    }
+
+    .work-search-wrap {
+        position: relative;
+        flex: 1;
+        min-width: 200px;
+        max-width: 320px;
+    }
+
+    .work-search-wrap svg {
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 13px; height: 13px;
+        fill: none;
+        stroke: var(--text-muted);
+        stroke-width: 2;
+        stroke-linecap: round;
+        pointer-events: none;
+    }
+
+    #work-search {
+        width: 100%;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        color: var(--text);
+        font-family: 'Montserrat', sans-serif;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        padding: 11px 12px 11px 36px;
+        outline: none;
+        transition: border-color 0.2s;
+    }
+
+    #work-search::placeholder { color: var(--text-muted); }
+    #work-search:focus { border-color: var(--gold); }
+
+    .work-filters {
+        display: flex;
+        gap: 2px;
+        flex-wrap: wrap;
+    }
+
+    .wfilt {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        background: var(--surface);
+        border: 1px solid var(--border);
+        padding: 10px 16px;
+        cursor: pointer;
+        transition: color 0.18s, border-color 0.18s, background 0.18s;
+    }
+
+    .wfilt:hover { color: var(--text); border-color: var(--text-muted); }
+
+    .wfilt.active {
+        color: var(--bg);
+        background: var(--gold);
+        border-color: var(--gold);
+    }
+
+    .work-sort {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        color: var(--text-muted);
+        font-family: 'Montserrat', sans-serif;
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        padding: 10px 14px;
+        cursor: pointer;
+        outline: none;
+        appearance: none;
+        -webkit-appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none' stroke='%236B6A5A' stroke-width='1.5' stroke-linecap='round'%3E%3Cpath d='M1 1l4 4 4-4'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        padding-right: 30px;
+        transition: border-color 0.2s, color 0.2s;
+    }
+
+    .work-sort:focus { border-color: var(--gold); color: var(--text); }
+
+    /* Results count */
+    .work-results-count {
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--text-dim);
+        margin-left: auto;
+    }
+
+    /* Empty state */
+    .work-empty {
+        display: none;
+        grid-column: 1 / -1;
+        padding: 64px 0;
+        text-align: center;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--text-dim);
+    }
+
+    /* Thumbnail card grid — 4 columns */
+    .work-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+        background: var(--bg);
+        min-height: 500px;
+        align-content: start;
+    }
+
+    .pcard.hidden,
+    .pcard.main-hidden { display: none; }
+
+    /* View More button */
+    .view-more-wrap {
+        display: flex;
+        justify-content: center;
+        margin-top: 32px;
+    }
+
+    .view-more-btn {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--text);
+        background: none;
+        border: 1px solid var(--border);
+        padding: 14px 40px;
+        cursor: pointer;
+        transition: border-color 0.2s, color 0.2s;
+    }
+
+    .view-more-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* ============================================================
+       GALLERY POPUP
+       ============================================================ */
+    #gallery-popup {
+        position: fixed;
+        inset: 0;
+        z-index: 800;
+        display: flex;
+        align-items: stretch;
+        justify-content: flex-end;
+        background: rgba(12,12,10,0.88);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+
+    #gallery-popup.open {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .gallery-panel {
+        width: min(92vw, 1100px);
+        height: 100vh;
+        background: var(--bg);
+        border-left: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+        transform: translateX(60px);
+        transition: transform 0.35s cubic-bezier(0.165,0.84,0.44,1);
+    }
+
+    #gallery-popup.open .gallery-panel { transform: translateX(0); }
+
+    .gallery-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 32px;
+        border-bottom: 1px solid var(--border);
+        flex-shrink: 0;
+    }
+
+    .gallery-title {
+        font-weight: 900;
+        font-size: clamp(1.2rem, 2vw, 1.8rem);
+        letter-spacing: -0.01em;
+        text-transform: uppercase;
+        color: var(--text);
+    }
+
+    .gallery-close {
+        background: none;
+        border: none;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--text);
+        cursor: pointer;
+        opacity: 0.5;
+        transition: opacity 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .gallery-close::before { content: '×'; font-size: 21px; font-weight: 300; line-height: 1; }
+    .gallery-close:hover { opacity: 1; }
+
+    .gallery-controls {
+        padding: 16px 32px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        flex-shrink: 0;
+    }
+
+    .gallery-controls .work-search-wrap { max-width: 240px; }
+
+    #gallery-search {
+        width: 100%;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        color: var(--text);
+        font-family: 'Montserrat', sans-serif;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        padding: 10px 12px 10px 34px;
+        outline: none;
+        transition: border-color 0.2s;
+    }
+
+    #gallery-search::placeholder { color: var(--text-muted); }
+    #gallery-search:focus { border-color: var(--gold); }
+
+    .gallery-count {
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--text-dim);
+        margin-left: auto;
+    }
+
+    .gallery-body {
+        flex: 1;
+        overflow-y: auto;
+        padding: 24px 32px 40px;
+    }
+
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+        background: var(--bg);
+    }
+
+    .gallery-empty {
+        display: none;
+        padding: 64px 0;
+        text-align: center;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--text-dim);
+        grid-column: 1 / -1;
+    }
+
+    @media (max-width: 768px) {
+        .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+        .gallery-controls { gap: 6px; }
+        .gallery-controls .work-search-wrap { max-width: 100%; flex: 1 1 100%; }
+    }
+
+    /* Each card */
+    .pcard {
+        background: var(--bg);
+        transition: background 0.2s;
+        cursor: default;
+        display: flex;
+        flex-direction: column;
+        border-right: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+    }
+
+    .pcard.has-video { cursor: pointer; }
+
+    .pcard.has-video:hover { background: var(--surface); }
+
+    /* Thumbnail area — 16:9 */
+    .pcard-thumb {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        background: var(--surface-2);
+        overflow: hidden;
+        flex-shrink: 0;
+    }
+
+    .pcard-thumb img {
+        width: 100%; height: 100%;
+        object-fit: cover;
+        display: block;
+        filter: brightness(1);
+        transition: filter 0.3s, transform 0.4s cubic-bezier(0.165,0.84,0.44,1);
+    }
+
+    .pcard.has-video:hover .pcard-thumb img {
+        filter: brightness(0.38);
+        transform: scale(1.05);
+    }
+
+    /* Play button overlay — only on has-video cards */
+    .pcard-play {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.2s;
+    }
+
+    .pcard.has-video:hover .pcard-play { opacity: 1; }
+
+    .pcard-play-circle {
+        width: 44px; height: 44px;
+        border-radius: 50%;
+        border: 2px solid var(--gold);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .pcard-play-circle svg {
+        width: 14px; height: 14px;
+        fill: var(--gold);
+        margin-left: 2px;
+    }
+
+    /* No-video placeholder */
+    .pcard-no-video {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .pcard-no-video span {
+        font-size: 8px;
+        font-weight: 700;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--text-dim);
+    }
+
+    /* Card info below the thumbnail */
+    .pcard-info {
+        padding: 16px 16px 18px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .pcard-cat {
+        font-size: 8px;
+        font-weight: 700;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 8px;
+    }
+
+    .pcard-title {
+        font-weight: 900;
+        font-size: clamp(0.82rem, 1vw, 1.05rem);
+        text-transform: uppercase;
+        letter-spacing: -0.01em;
+        color: var(--text);
+        line-height: 1.2;
+        flex: 1;
+    }
+
+    .pcard-foot {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 12px;
+        padding-top: 10px;
+        border-top: 1px solid var(--border);
+    }
+
+    .pcard-year {
+        font-size: 8px;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        color: var(--text-dim);
+    }
+
+    .pcard-watch {
+        font-size: 8px;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--gold);
+        opacity: 0;
+        transition: opacity 0.2s;
+    }
+
+    .pcard.has-video:hover .pcard-watch { opacity: 1; }
+
+    /* ============================================================
+       VIDEO MODAL
+       ============================================================ */
+    #modal {
+        position: fixed;
+        inset: 0;
+        z-index: 900;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(12,12,10,0.96);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+        padding: 40px;
+    }
+
+    #modal.open {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .modal-inner {
+        position: relative;
+        width: 100%;
+        max-width: 1100px;
+    }
+
+    /* Close button */
+    .modal-close {
+        position: absolute;
+        top: -48px; right: 0;
+        background: none;
+        border: none;
+        color: var(--text);
+        font-family: 'Montserrat', sans-serif;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        cursor: pointer;
+        opacity: 0.55;
+        transition: opacity 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .modal-close:hover { opacity: 1; }
+
+    .modal-close::before {
+        content: '×';
+        font-size: 23px;
+        font-weight: 300;
+        line-height: 1;
+    }
+
+    /* Title bar above the player */
+    .modal-title-bar {
+        display: flex;
+        align-items: baseline;
+        gap: 16px;
+        margin-bottom: 12px;
+    }
+
+    .modal-cat {
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--gold);
+    }
+
+    .modal-title {
+        font-weight: 900;
+        font-size: clamp(1rem, 1.6vw, 1.5rem);
+        text-transform: uppercase;
+        letter-spacing: -0.01em;
+        color: var(--text);
+    }
+
+    /* 16:9 video wrapper */
+    .modal-player {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        background: #000;
+    }
+
+    .modal-player iframe,
+    .modal-player video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+
+    /* Project about text below the player */
+    .modal-about {
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid var(--border);
+        font-size: clamp(0.75rem, 0.9vw, 0.92rem);
+        font-weight: 300;
+        line-height: 1.9;
+        color: var(--text-muted);
+        white-space: pre-line;
+    }
+
+    .modal-about:empty { display: none; }
+
+    /* ============================================================
+       UPDATES + WORKSHOPS
+       ============================================================ */
+    #recognition {
+        padding: 72px 48px;
+        border-top: 1px solid var(--border);
+        max-width: 1440px;
+        margin: 0 auto;
+    }
+
+    .news-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+    }
+
+    .news-col-title {
+        font-weight: 900;
+        font-size: clamp(2rem, 3.5vw, 4rem);
+        line-height: 0.9;
+        letter-spacing: -0.025em;
+        text-transform: uppercase;
+        color: var(--text);
+        margin-bottom: 40px;
+        padding-bottom: 24px;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .news-item {
+        display: flex;
+        gap: 18px;
+        padding: 20px 0;
+        border-bottom: 1px solid var(--border);
+        text-decoration: none;
+    }
+
+    .news-item:first-of-type { border-top: none; }
+
+    .news-thumb {
+        flex-shrink: 0;
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        background: var(--surface-2);
+        display: block;
+    }
+
+    .news-thumb-placeholder {
+        flex-shrink: 0;
+        width: 80px;
+        height: 80px;
+        background: var(--surface-2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 23px;
+        color: var(--text-dim);
+    }
+
+    .news-body { flex: 1; min-width: 0; }
+
+    .news-title {
+        font-weight: 700;
+        font-size: clamp(0.8rem, 1vw, 0.95rem);
+        line-height: 1.35;
+        color: var(--gold);
+        margin-bottom: 4px;
+        text-decoration: none;
+    }
+
+    .news-date {
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        margin-bottom: 6px;
+    }
+
+    .news-desc {
+        font-size: clamp(0.75rem, 0.85vw, 0.85rem);
+        font-weight: 300;
+        line-height: 1.6;
+        color: var(--text);
+    }
+
+    @media (max-width: 900px) {
+        .news-grid { grid-template-columns: 1fr; gap: 48px; }
+    }
+
+    /* ============================================================
+       STUDIO BANNER
+       ============================================================ */
+    #studio {
+        position: relative;
+        height: 60vh;
+        overflow: hidden;
+        border-top: 1px solid var(--border);
+    }
+
+    .studio-img {
+        position: absolute;
+        inset: 0;
+        width: 100%; height: 115%;
+        object-fit: cover;
+        filter: brightness(0.26) grayscale(20%);
+        transform-origin: center top;
+    }
+
+    .studio-copy {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0 48px;
+    }
+
+    .studio-label {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.45em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 24px;
+    }
+
+    .studio-quote {
+        font-weight: 700;
+        font-size: clamp(1.1rem, 2.2vw, 2.2rem);
+        line-height: 1.5;
+        letter-spacing: 0.01em;
+        color: var(--text);
+        max-width: 820px;
+        font-style: italic;
+        margin: 28px 0 0;
+    }
+
+    .studio-sub {
+        font-size: clamp(0.95rem, 1.4vw, 1.3rem);
+        color: var(--text-muted);
+        font-weight: 300;
+        line-height: 1.7;
+        max-width: 680px;
+        font-style: normal;
+    }
+
+    /* ============================================================
+       CONTACT
+       ============================================================ */
+    #contact {
+        padding: 72px 48px 64px;
+        border-top: 1px solid var(--border);
+        max-width: 1440px;
+        margin: 0 auto;
+    }
+
+    .contact-top { margin-bottom: 48px; }
+
+    .contact-title {
+        font-weight: 900;
+        font-size: clamp(2.4rem, 7vw, 8rem);
+        line-height: 0.88;
+        text-transform: uppercase;
+        letter-spacing: -0.03em;
+        color: var(--text);
+        margin-bottom: 28px;
+    }
+
+    /* Contact form */
+    .contact-form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2px;
+        background: var(--border);
+        margin-top: 40px;
+    }
+
+    .cf-field {
+        background: var(--surface);
+        display: flex;
+        flex-direction: column;
+        padding: 20px 24px;
+    }
+
+    .cf-field.full { grid-column: 1 / -1; }
+
+    .cf-label {
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 10px;
+    }
+
+    .cf-input,
+    .cf-textarea {
+        background: none;
+        border: none;
+        border-bottom: 1px solid var(--border);
+        color: var(--text);
+        font-family: 'Montserrat', sans-serif;
+        font-size: clamp(0.875rem, 1vw, 1.1rem);
+        font-weight: 300;
+        padding: 6px 0;
+        outline: none;
+        width: 100%;
+        transition: border-color 0.2s;
+    }
+
+    .cf-input:focus,
+    .cf-textarea:focus { border-bottom-color: var(--gold); }
+
+    .cf-textarea {
+        resize: vertical;
+        min-height: 120px;
+        line-height: 1.7;
+    }
+
+    .cf-submit-row {
+        grid-column: 1 / -1;
+        background: var(--surface);
+        padding: 20px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+    }
+
+    .cf-note {
+        font-size: 11px;
+        font-weight: 300;
+        color: var(--text-muted);
+        letter-spacing: 0.08em;
+    }
+
+    .cf-btn {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--bg);
+        background: var(--gold);
+        border: none;
+        padding: 14px 32px;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+
+    .cf-btn:hover { background: var(--gold-light); }
+
+    .cf-success {
+        display: none;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-top: 20px;
+    }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    footer {
+        padding: 26px 48px;
+        border-top: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: var(--surface);
+    }
+
+    .footer-copy, .footer-loc {
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+    }
+
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
+    @media (max-width: 1100px) {
+        #about { grid-template-columns: 260px 1fr; gap: 40px; padding: calc(var(--nav-h) + 36px) 40px 56px; }
+        #work, #recognition, #contact { padding: 60px 40px; }
+        .work-grid { grid-template-columns: repeat(3, 1fr); min-height: 420px; }
+    }
+
+    @media (max-width: 768px) {
+        #nav { padding: 0 24px; }
+        .nav-links { display: none; }
+
+        #about { grid-template-columns: 1fr; gap: 32px; padding: calc(var(--nav-h) + 24px) 24px 48px; }
+
+        #work, #recognition, #contact { padding: 48px 24px; }
+        .work-grid { grid-template-columns: repeat(2, 1fr); min-height: 340px; }
+        .work-controls { gap: 8px; }
+        .work-search-wrap { max-width: 100%; }
+        .recog-grid { grid-template-columns: 1fr; }
+        .contact-bottom { grid-template-columns: 1fr; gap: 32px; }
+        .studio-copy { padding: 0 24px; }
+
+        #modal { padding: 20px; }
+        .modal-close { top: -40px; }
+
+        footer { flex-direction: column; gap: 8px; text-align: center; padding: 20px; }
+    }
+
+    @media (max-width: 480px) {
+        .work-grid { grid-template-columns: 1fr; min-height: 280px; }
+        .work-results-count { display: none; }
+    }
+
+    </style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAV
+     ============================================================ -->
+<nav id="nav">
+    <a href="#" class="nav-logo">AB<em>.</em></a>
+    <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#recognition">Updates</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+
+<!-- ============================================================
+     ABOUT — opening section
+     ============================================================ -->
+<section id="about">
+
+    <div class="about-left">
+        <div class="about-photo-wrap">
+            <img src="brand_assets/Ananda_Primary.jpeg" alt="Ananda Bathena">
+        </div>
+
+    </div>
+
+    <div class="about-right">
+        <div class="section-number">About</div>
+        <h1 class="about-name">Ananda<br><span>Bathena</span></h1>
+        <p class="about-tagline">Alumnus, IDC School of Design, IIT Bombay</p>
+        <p class="about-bio">
+            I'm a multidisciplinary sound artist with a foundation in filmmaking, VR, and design thinking, creating immersive, story-driven audio experiences. My work spans feature films, advertising, original music, and XR.
+        </p>
+        <p class="about-bio">
+            I composed and designed sound for the award-winning 6DoF VR experience <em>Into the Manhole</em>, recognized at FICCI BAF, Courant3D 2025, Laval Virtual and Busan International Short Film Festival.
+        </p>
+        <div class="about-badges">
+            <div class="about-badge">Film Score</div>
+            <div class="about-badge">Sound Design</div>
+            <div class="about-badge">VR · Spatial Audio</div>
+            <div class="about-badge">Original Music</div>
+            <div class="about-badge">Post Production</div>
+            <div class="about-badge">Binaural Audio</div>
+        </div>
+    </div>
+
+</section>
+
+
+
+<!-- ============================================================
+     WORK — flat grid with search / filter / sort
+     data-filter on each card = the category key used by filter buttons
+     data-year  on each card = used for sort
+     data-title on each card = used for search
+     ============================================================ -->
+<section id="work">
+
+    <div class="work-header">
+        <h2 class="work-big-title">Work</h2>
+        <span class="work-header-label">Projects</span>
+    </div>
+
+    <!-- Controls row -->
+    <div class="work-controls">
+
+        <!-- Search -->
+        <div class="work-search-wrap">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+            <input id="work-search" type="text" placeholder="Search projects…" autocomplete="off">
+        </div>
+
+        <!-- Filter tabs -->
+        <div class="work-filters" role="group" aria-label="Filter by category">
+            <button class="wfilt active" data-filter="all">All Projects</button>
+            <button class="wfilt" data-filter="featured">Featured</button>
+            <button class="wfilt" data-filter="original">Originals</button>
+            <button class="wfilt" data-filter="film">Film Songs</button>
+            <button class="wfilt" data-filter="score">Scores</button>
+            <button class="wfilt" data-filter="xr">XR</button>
+            <button class="wfilt" data-filter="ad">Advertisements</button>
+        </div>
+
+        <!-- Sort -->
+        <select class="work-sort" id="work-sort" aria-label="Sort projects">
+            <option value="default">Sort: Default</option>
+            <option value="year-desc">Year: Newest</option>
+            <option value="year-asc">Year: Oldest</option>
+            <option value="title-asc">Title: A–Z</option>
+            <option value="title-desc">Title: Z–A</option>
+        </select>
+
+        <!-- Results count -->
+        <span class="work-results-count" id="work-results-count">6 Projects</span>
+    </div>
+
+    <!-- Flat card grid — all projects in one block -->
+    <div class="work-grid" id="work-grid">
+
+        <!-- Into the Manhole -->
+        <div class="pcard has-video"
+             data-video-id="-4-xjF6OTHM"
+             data-title="Into the Manhole"
+             data-featured="true"
+             data-filter="xr"
+             data-year="2025"
+             data-about="6DoF VR experience | Composition &amp; Sound Design · 2025&#10;&#10;Grand Prix — Laval Virtual, France 2025&#10;Grand Prix — Courant3D, France 2025&#10;Best XR / Special Jury Mention — FICCI BAF Awards, Mumbai 2025&#10;Official Selection — Busan International Short Film Festival 2024">
+            <div class="pcard-thumb">
+                <img src="https://img.youtube.com/vi/-4-xjF6OTHM/mqdefault.jpg" alt="Into the Manhole">
+                <div class="pcard-play"><div class="pcard-play-circle"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+            </div>
+            <div class="pcard-info">
+                <div class="pcard-cat">XR · Spatial Audio · FICCI BAF</div>
+                <h3 class="pcard-title">Into the Manhole</h3>
+                <div class="pcard-foot"><span class="pcard-year">2025</span><span class="pcard-watch">Watch ↗</span></div>
+            </div>
+        </div>
+
+        <!-- Absence -->
+        <div class="pcard has-video"
+             data-video-id="nMnE7ixAja0"
+             data-title="Absence"
+             data-filter="xr"
+             data-year="2022"
+             data-about="Spatial Audio Film (VR) | Composition &amp; Sound Design · 2022&#10;&#10;A spatial audio film created as part of the IDC School of Design, IIT Bombay. Composed and designed for a fully immersive VR environment.">
+            <div class="pcard-thumb">
+                <img src="https://img.youtube.com/vi/nMnE7ixAja0/mqdefault.jpg" alt="Absence">
+                <div class="pcard-play"><div class="pcard-play-circle"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+            </div>
+            <div class="pcard-info">
+                <div class="pcard-cat">XR · Spatial Audio</div>
+                <h3 class="pcard-title">Absence</h3>
+                <div class="pcard-foot"><span class="pcard-year">2022</span><span class="pcard-watch">Watch ↗</span></div>
+            </div>
+        </div>
+
+        <!-- You Will Hate This (Ha Why?) -->
+        <div class="pcard has-video"
+             data-video-id="5oXtt0rVXRc"
+             data-title="You Will Hate This (Ha Why?)"
+             data-filter="original"
+             data-year="2024"
+             data-about="Original · Anti Music · Alternate Music · 2024&#10;&#10;Composed, written and performed by Ananda Bathena. Directed by Yashwanth Ramavath. A music video produced under Post Saturation.">
+            <div class="pcard-thumb">
+                <img src="https://img.youtube.com/vi/5oXtt0rVXRc/mqdefault.jpg" alt="You Will Hate This (Ha Why?)">
+                <div class="pcard-play"><div class="pcard-play-circle"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+            </div>
+            <div class="pcard-info">
+                <div class="pcard-cat">Original · Anti Music · Alternate Music</div>
+                <h3 class="pcard-title">You Will Hate This (Ha Why?)</h3>
+                <div class="pcard-foot"><span class="pcard-year">2024</span><span class="pcard-watch">Watch ↗</span></div>
+            </div>
+        </div>
+
+        <!-- Endiya -->
+        <div class="pcard has-video"
+             data-video-id="B59Py24Np90"
+             data-title="Endiya"
+             data-featured="true"
+             data-filter="original"
+             data-year="2024">
+            <div class="pcard-thumb">
+                <img src="https://img.youtube.com/vi/B59Py24Np90/mqdefault.jpg" alt="Endiya">
+                <div class="pcard-play"><div class="pcard-play-circle"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+            </div>
+            <div class="pcard-info">
+                <div class="pcard-cat">Original · Telugu · Lyrical</div>
+                <h3 class="pcard-title">Endiya</h3>
+                <div class="pcard-foot"><span class="pcard-year">2024</span><span class="pcard-watch">Watch ↗</span></div>
+            </div>
+        </div>
+
+        <!-- ICICI Animated Ad -->
+        <div class="pcard has-video"
+             data-video-id="lJSOyDB0FIw"
+             data-title="ICICI Animated Ad"
+             data-featured="true"
+             data-filter="ad"
+             data-year="2020">
+            <div class="pcard-thumb">
+                <img src="https://img.youtube.com/vi/lJSOyDB0FIw/mqdefault.jpg" alt="ICICI Animated Ad">
+                <div class="pcard-play"><div class="pcard-play-circle"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+            </div>
+            <div class="pcard-info">
+                <div class="pcard-cat">Advertisement · Sound Design</div>
+                <h3 class="pcard-title">ICICI Animated Ad</h3>
+                <div class="pcard-foot"><span class="pcard-year">2020</span><span class="pcard-watch">Watch ↗</span></div>
+            </div>
+        </div>
+
+        <!-- Safar Mein (Music Video) -->
+        <div class="pcard has-video"
+             data-video-id="pNOvm0BX06s"
+             data-title="Safar Mein"
+             data-filter="film"
+             data-year="2025">
+            <div class="pcard-thumb">
+                <img src="https://img.youtube.com/vi/pNOvm0BX06s/mqdefault.jpg" alt="Safar Mein">
+                <div class="pcard-play"><div class="pcard-play-circle"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+            </div>
+            <div class="pcard-info">
+                <div class="pcard-cat">Film Song · Safar Mein Sheher · Desi Sangeet Music</div>
+                <h3 class="pcard-title">Safar Mein</h3>
+                <div class="pcard-foot"><span class="pcard-year">2025</span><span class="pcard-watch">Watch ↗</span></div>
+            </div>
+        </div>
+
+        <!-- Safar Mein (Lyrical) -->
+        <div class="pcard has-video"
+             data-video-id="PWByenq_TIs"
+             data-title="Safar Mein (Lyrical)"
+             data-filter="film"
+             data-year="2025">
+            <div class="pcard-thumb">
+                <img src="https://img.youtube.com/vi/PWByenq_TIs/mqdefault.jpg" alt="Safar Mein Lyrical">
+                <div class="pcard-play"><div class="pcard-play-circle"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+            </div>
+            <div class="pcard-info">
+                <div class="pcard-cat">Film Song · Lyrical · Desi Sangeet Music</div>
+                <h3 class="pcard-title">Safar Mein (Lyrical)</h3>
+                <div class="pcard-foot"><span class="pcard-year">2025</span><span class="pcard-watch">Watch ↗</span></div>
+            </div>
+        </div>
+
+        <!-- Is Sheher Mein (Lyrical) -->
+        <div class="pcard has-video"
+             data-video-id="0GgtGwLuCZk"
+             data-title="Is Sheher Mein (Lyrical)"
+             data-featured="true"
+             data-filter="film"
+             data-year="2025">
+            <div class="pcard-thumb">
+                <img src="https://img.youtube.com/vi/0GgtGwLuCZk/mqdefault.jpg" alt="Is Sheher Mein Lyrical">
+                <div class="pcard-play"><div class="pcard-play-circle"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+            </div>
+            <div class="pcard-info">
+                <div class="pcard-cat">Film Song · Lyrical · Desi Sangeet Music</div>
+                <h3 class="pcard-title">Is Sheher Mein (Lyrical)</h3>
+                <div class="pcard-foot">
+                    <span class="pcard-year">2025</span>
+                    <span class="pcard-watch">Watch ↗</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sejal's Theme / Lullaby — Lakes and Puddles -->
+        <div class="pcard has-video"
+             data-video-id="zzlOwOLrd74"
+             data-title="Sejal's Theme / Lullaby"
+             data-featured="true"
+             data-filter="score"
+             data-year="2022">
+            <div class="pcard-thumb">
+                <img src="https://img.youtube.com/vi/zzlOwOLrd74/mqdefault.jpg" alt="Sejal's Theme / Lullaby">
+                <div class="pcard-play"><div class="pcard-play-circle"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+            </div>
+            <div class="pcard-info">
+                <div class="pcard-cat">Film Score · Lakes and Puddles</div>
+                <h3 class="pcard-title">Sejal's Theme / Lullaby</h3>
+                <div class="pcard-foot"><span class="pcard-year">2022</span><span class="pcard-watch">Watch ↗</span></div>
+            </div>
+        </div>
+
+        <!-- Lakes and Puddles — Trailer (Vimeo) -->
+        <div class="pcard has-video"
+             data-vimeo-id="671633675"
+             data-title="Lakes and Puddles"
+             data-filter="score"
+             data-year="2022">
+            <div class="pcard-thumb">
+                <img src="https://i.vimeocdn.com/video/1360894231-e40c27111a89a0f8a651bf92df2ca9ef43af84ea6abd60e8d198fe64262238b9-d_295x166" alt="Lakes and Puddles">
+                <div class="pcard-play"><div class="pcard-play-circle"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+            </div>
+            <div class="pcard-info">
+                <div class="pcard-cat">Film Score · Short Film · Trailer</div>
+                <h3 class="pcard-title">Lakes and Puddles</h3>
+                <div class="pcard-foot"><span class="pcard-year">2022</span><span class="pcard-watch">Watch ↗</span></div>
+            </div>
+        </div>
+
+        <div class="work-empty" id="work-empty">No projects match your search.</div>
+
+    </div><!-- end .work-grid -->
+
+    <div class="view-more-wrap">
+        <button class="view-more-btn" id="view-more-btn">View All Projects ↗</button>
+    </div>
+
+</section>
+
+
+<!-- ============================================================
+     GALLERY POPUP
+     ============================================================ -->
+<div id="gallery-popup" role="dialog" aria-modal="true" aria-label="All projects">
+
+    <div class="gallery-panel">
+
+        <div class="gallery-header">
+            <span class="gallery-title">All Projects</span>
+            <button class="gallery-close" id="gallery-close">Close</button>
+        </div>
+
+        <div class="gallery-controls">
+            <!-- Search -->
+            <div class="work-search-wrap">
+                <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+                <input id="gallery-search" type="text" placeholder="Search projects…" autocomplete="off">
+            </div>
+            <!-- Filters -->
+            <div class="work-filters" role="group" aria-label="Filter by category" id="gallery-filters">
+                <button class="wfilt active" data-filter="all">All Projects</button>
+                <button class="wfilt" data-filter="featured">Featured</button>
+                <button class="wfilt" data-filter="original">Originals</button>
+                <button class="wfilt" data-filter="film">Film Songs</button>
+                <button class="wfilt" data-filter="score">Scores</button>
+                <button class="wfilt" data-filter="xr">XR</button>
+                <button class="wfilt" data-filter="ad">Advertisements</button>
+            </div>
+            <!-- Sort -->
+            <select class="work-sort" id="gallery-sort" aria-label="Sort projects">
+                <option value="default">Sort: Default</option>
+                <option value="year-desc">Year: Newest</option>
+                <option value="year-asc">Year: Oldest</option>
+                <option value="title-asc">Title: A–Z</option>
+                <option value="title-desc">Title: Z–A</option>
+            </select>
+            <span class="gallery-count" id="gallery-count"></span>
+        </div>
+
+        <div class="gallery-body">
+            <div class="gallery-grid" id="gallery-grid"></div>
+            <div class="gallery-empty" id="gallery-empty">No projects match your search.</div>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- ============================================================
+     VIDEO MODAL
+     ============================================================ -->
+<div id="modal" role="dialog" aria-modal="true" aria-label="Video player">
+    <div class="modal-inner">
+        <button class="modal-close" id="modal-close">Close</button>
+        <div class="modal-title-bar">
+            <span class="modal-cat" id="modal-cat"></span>
+            <span class="modal-title" id="modal-title"></span>
+        </div>
+        <div class="modal-player" id="modal-player"></div>
+        <p class="modal-about" id="modal-about"></p>
+    </div>
+</div>
+
+
+<!-- ============================================================
+     UPDATES + WORKSHOPS
+     ============================================================ -->
+<section id="recognition">
+
+    <div class="news-grid">
+
+        <!-- LEFT: Updates -->
+        <div class="news-col">
+            <h2 class="news-col-title">Updates</h2>
+
+            <div class="news-item">
+                <img class="news-thumb" src="brand_assets/Ananda_FICCIBAF.jpeg" alt="Laval Virtual 2025" loading="lazy">
+                <div class="news-body">
+                    <div class="news-title">Into the Manhole wins Grand Prix at Laval Virtual 2025</div>
+                    <div class="news-date">April 2025 · Laval, France</div>
+                    <p class="news-desc">The 6DoF VR experience won the Grand Prix at Laval Virtual, one of the world's leading XR events.</p>
+                </div>
+            </div>
+
+            <div class="news-item">
+                <img class="news-thumb" src="brand_assets/Ananda_FICCIBAF.jpeg" alt="Courant3D 2025" loading="lazy">
+                <div class="news-body">
+                    <div class="news-title">Into the Manhole wins Grand Prix at Courant3D 2025</div>
+                    <div class="news-date">2025 · France</div>
+                    <p class="news-desc">Awarded the Grand Prix at Courant3D, recognising excellence in immersive and spatial storytelling.</p>
+                </div>
+            </div>
+
+            <div class="news-item">
+                <img class="news-thumb" src="brand_assets/Ananda_FICCIBAF.jpeg" alt="FICCI BAF Awards 2025" loading="lazy">
+                <div class="news-body">
+                    <div class="news-title">Into the Manhole wins at FICCI BAF Awards</div>
+                    <div class="news-date">March 27, 2025 · Mumbai</div>
+                    <p class="news-desc">Recognised at FICCI BAF Awards 2025, presented by Jio Star at FICCI Frames — 25 Years.</p>
+                </div>
+            </div>
+
+            <div class="news-item">
+                <img class="news-thumb" src="brand_assets/Ananda_JioMAMI.jpg" alt="Busan International Short Film Festival" loading="lazy">
+                <div class="news-body">
+                    <div class="news-title">Into the Manhole screened at Busan International Short Film Festival</div>
+                    <div class="news-date">2024 · Busan, South Korea</div>
+                    <p class="news-desc">Official selection at one of Asia's premier short film festivals.</p>
+                </div>
+            </div>
+
+            <div class="news-item">
+                <div class="news-thumb-placeholder">🎵</div>
+                <div class="news-body">
+                    <div class="news-title">Safar Mein Sheher by Mazhar Kamran hits milestone views</div>
+                    <div class="news-date">2024 · Desi Sangeeth</div>
+                    <!-- UPDATE: Replace X with actual total view count from the Desi Sangeeth channel -->
+                    <p class="news-desc">Film songs composed &amp; produced by Ananda Bathena accumulate X total views across the Desi Sangeeth YouTube channel.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- RIGHT: Workshops -->
+        <div class="news-col">
+            <h2 class="news-col-title">Workshops</h2>
+
+            <div class="news-item">
+                <div class="news-thumb-placeholder">🎙</div>
+                <div class="news-body">
+                    <div class="news-title">Add your workshop or course here</div>
+                    <div class="news-date">Date · Location</div>
+                    <p class="news-desc">Description of the workshop, masterclass, or course you led or participated in.</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ============================================================
+     STUDIO BANNER
+     ============================================================ -->
+<section id="studio">
+    <img id="studio-img" src="brand_assets/Ananda_WorkingStill.jpeg"
+         class="studio-img" alt="Ananda Bathena in the recording studio" loading="lazy">
+    <div class="studio-copy">
+        <p class="studio-sub">As a designer and a sound artist, I overthink the music and sound. Because it is way too important for me to get it right. Let's together find that right sound and the right moment.</p>
+        <h2 class="studio-quote">"The right sound at the right moment makes you believe in what you see and makes you feel."</h2>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     CONTACT
+     ============================================================ -->
+<section id="contact">
+
+    <div class="contact-top">
+        <div class="section-number">Get In Touch</div>
+        <h2 class="contact-title">Let's Make<br>Something.</h2>
+    </div>
+
+    <!--
+        SETUP: Sign up free at https://formspree.io
+        Create a form, copy your form ID, and replace YOUR_FORM_ID below.
+        e.g. action="https://formspree.io/f/xyzabcde"
+    -->
+    <form
+        id="contact-form"
+        class="contact-form"
+        action="https://formspree.io/f/YOUR_FORM_ID"
+        method="POST"
+    >
+        <div class="cf-field">
+            <label class="cf-label" for="cf-name">Name</label>
+            <input class="cf-input" id="cf-name" name="name" type="text" required placeholder="Your name">
+        </div>
+
+        <div class="cf-field">
+            <label class="cf-label" for="cf-phone">Contact No</label>
+            <input class="cf-input" id="cf-phone" name="phone" type="tel" placeholder="+91 00000 00000">
+        </div>
+
+        <div class="cf-field">
+            <label class="cf-label" for="cf-email">Email</label>
+            <input class="cf-input" id="cf-email" name="email" type="email" required placeholder="your@email.com">
+        </div>
+
+        <div class="cf-field">
+            <label class="cf-label" for="cf-subject">Subject</label>
+            <input class="cf-input" id="cf-subject" name="subject" type="text" required placeholder="Film score, sound design, collab…">
+        </div>
+
+        <div class="cf-field full">
+            <label class="cf-label" for="cf-message">Message</label>
+            <textarea class="cf-textarea" id="cf-message" name="message" required placeholder="Tell me about your project…"></textarea>
+        </div>
+
+        <div class="cf-submit-row">
+            <span class="cf-note">Your message goes straight to my inbox.</span>
+            <button class="cf-btn" type="submit">Send Message</button>
+        </div>
+    </form>
+
+    <p class="cf-success" id="cf-success">Message sent — I'll be in touch soon.</p>
+
+</section>
+
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer>
+    <span class="footer-copy">© 2025 Ananda Bathena — Composer &amp; Sound Designer</span>
+    <span class="footer-loc">Mumbai, India</span>
+</footer>
+
+
+<!-- ============================================================
+     JAVASCRIPT
+     ============================================================ -->
+<script>
+
+    /* ── NAV solidify on scroll ── */
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+
+    /* ── STAT COUNTERS ── */
+    const countObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (!e.isIntersecting) return;
+            const el  = e.target;
+            const end = parseInt(el.dataset.count, 10);
+            const sfx = end > 9 ? '+' : '';
+            let cur = 0;
+            const step = Math.max(1, Math.ceil(end / 25));
+            const t = setInterval(() => {
+                cur = Math.min(cur + step, end);
+                el.textContent = cur + sfx;
+                if (cur >= end) clearInterval(t);
+            }, 45);
+            countObs.unobserve(el);
+        });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('[data-count]').forEach(el => countObs.observe(el));
+
+
+    /* ── VIDEO MODAL ── */
+    const modal       = document.getElementById('modal');
+    const modalPlayer = document.getElementById('modal-player');
+    const modalTitle  = document.getElementById('modal-title');
+    const modalCat    = document.getElementById('modal-cat');
+    const modalAbout  = document.getElementById('modal-about');
+    const modalClose  = document.getElementById('modal-close');
+
+    function openModal(card) {
+        const videoId   = card.dataset.videoId;
+        const vimeoId   = card.dataset.vimeoId;
+        const videoSrc  = card.dataset.videoSrc;
+        const title     = card.dataset.title || '';
+        const catEl     = card.querySelector('.pcard-cat');
+        const cat       = catEl ? catEl.textContent : '';
+        const about     = card.dataset.about || '';
+
+        modalTitle.textContent = title;
+        modalCat.textContent   = cat;
+        modalAbout.textContent = about;
+        modalPlayer.innerHTML  = '';
+
+        if (videoId) {
+            const p = new URLSearchParams({
+                autoplay: 1, controls: 1, rel: 0,
+                modestbranding: 1, playsinline: 1
+            });
+            const iframe = document.createElement('iframe');
+            iframe.src = `https://www.youtube.com/embed/${videoId}?${p}`;
+            iframe.allow = 'autoplay; fullscreen';
+            iframe.allowFullscreen = true;
+            modalPlayer.appendChild(iframe);
+        } else if (vimeoId) {
+            const iframe = document.createElement('iframe');
+            iframe.src = `https://player.vimeo.com/video/${vimeoId}?autoplay=1&title=0&byline=0&portrait=0`;
+            iframe.allow = 'autoplay; fullscreen';
+            iframe.allowFullscreen = true;
+            modalPlayer.appendChild(iframe);
+        } else if (videoSrc) {
+            const video = document.createElement('video');
+            video.src      = videoSrc.replace(/\?/g, '%3F').replace(/ /g, '%20').replace(/#/g, '%23');
+            video.controls = true;
+            video.autoplay = true;
+            video.style.background = '#000';
+            modalPlayer.appendChild(video);
+        }
+
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        modal.classList.remove('open');
+        document.body.style.overflow = '';
+        setTimeout(() => { modalPlayer.innerHTML = ''; }, 300);
+    }
+
+    document.querySelectorAll('.pcard.has-video').forEach(card => {
+        card.addEventListener('click', () => openModal(card));
+    });
+
+    modalClose.addEventListener('click', closeModal);
+    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+    });
+
+
+    /* ── WORK GRID: max 8, filter/sort on main grid ── */
+    const MAIN_MAX    = 8;
+    const workGrid    = document.getElementById('work-grid');
+    const workEmpty   = document.getElementById('work-empty');
+    const workCount   = document.getElementById('work-results-count');
+    const searchInput = document.getElementById('work-search');
+    const sortSelect  = document.getElementById('work-sort');
+    const mainFilterBtns = document.querySelectorAll('#work .wfilt');
+
+    let mainFilter = 'all';
+    let mainSearch = '';
+    let mainSort   = 'default';
+
+    const allCards = Array.from(workGrid.querySelectorAll('.pcard'));
+    allCards.forEach((c, i) => c.dataset.origIdx = i);
+
+    function matchesFilter(card, filter) {
+        if (filter === 'all') return true;
+        if (filter === 'featured') return card.dataset.featured === 'true';
+        return card.dataset.filter === filter;
+    }
+
+    function sortCards(arr, mode) {
+        if (mode === 'year-desc') return [...arr].sort((a,b) => b.dataset.year - a.dataset.year);
+        if (mode === 'year-asc')  return [...arr].sort((a,b) => a.dataset.year - b.dataset.year);
+        if (mode === 'title-asc') return [...arr].sort((a,b) => a.dataset.title.localeCompare(b.dataset.title));
+        if (mode === 'title-desc')return [...arr].sort((a,b) => b.dataset.title.localeCompare(a.dataset.title));
+        return [...arr].sort((a,b) => +a.dataset.origIdx - +b.dataset.origIdx);
+    }
+
+    function applyMainGrid() {
+        let visible = allCards.filter(c => {
+            return matchesFilter(c, mainFilter) && c.dataset.title.toLowerCase().includes(mainSearch);
+        });
+        visible = sortCards(visible, mainSort);
+
+        allCards.forEach(c => { c.classList.add('hidden'); c.classList.remove('main-hidden'); });
+        visible.forEach((c, i) => {
+            if (i < MAIN_MAX) {
+                c.classList.remove('hidden');
+                workGrid.appendChild(c);
+            } else {
+                c.classList.add('main-hidden');
+            }
+        });
+        workEmpty.style.display = visible.length === 0 ? 'block' : 'none';
+        workCount.textContent = `${visible.length} Project${visible.length !== 1 ? 's' : ''}`;
+
+        /* Show/hide View More button */
+        document.getElementById('view-more-btn').style.display = visible.length > MAIN_MAX ? 'inline-block' : 'none';
+    }
+
+    mainFilterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            mainFilterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            mainFilter = btn.dataset.filter;
+            applyMainGrid();
+        });
+    });
+    searchInput.addEventListener('input', () => { mainSearch = searchInput.value.trim().toLowerCase(); applyMainGrid(); });
+    sortSelect.addEventListener('change', () => { mainSort = sortSelect.value; applyMainGrid(); });
+    applyMainGrid();
+
+
+    /* ── GALLERY POPUP ── */
+    const galleryPopup   = document.getElementById('gallery-popup');
+    const galleryGrid    = document.getElementById('gallery-grid');
+    const galleryEmpty   = document.getElementById('gallery-empty');
+    const galleryCount   = document.getElementById('gallery-count');
+    const gallerySearch  = document.getElementById('gallery-search');
+    const gallerySort    = document.getElementById('gallery-sort');
+    const galleryFilters = document.querySelectorAll('#gallery-filters .wfilt');
+    const viewMoreBtn    = document.getElementById('view-more-btn');
+    const galleryClose   = document.getElementById('gallery-close');
+
+    let gFilter = 'all';
+    let gSearch  = '';
+    let gSort    = 'default';
+
+    /* Build gallery cards by cloning work cards */
+    function buildGalleryCards() {
+        galleryGrid.innerHTML = '';
+        allCards.forEach(card => {
+            const clone = card.cloneNode(true);
+            clone.classList.remove('hidden', 'main-hidden');
+            /* wire click on clone */
+            if (clone.classList.contains('has-video')) {
+                clone.addEventListener('click', () => openModal(clone));
+            }
+            galleryGrid.appendChild(clone);
+        });
+    }
+
+    function applyGallery() {
+        const cards = Array.from(galleryGrid.querySelectorAll('.pcard'));
+        let visible = cards.filter(c => {
+            return matchesFilter(c, gFilter) && c.dataset.title.toLowerCase().includes(gSearch);
+        });
+        const sorted = sortCards(visible, gSort);
+
+        cards.forEach(c => c.classList.add('hidden'));
+        sorted.forEach(c => { c.classList.remove('hidden'); galleryGrid.appendChild(c); });
+        galleryEmpty.style.display = sorted.length === 0 ? 'block' : 'none';
+        galleryCount.textContent = `${sorted.length} Project${sorted.length !== 1 ? 's' : ''}`;
+    }
+
+    function openGallery() {
+        buildGalleryCards();
+        gFilter = 'all'; gSearch = ''; gSort = 'default';
+        gallerySearch.value = '';
+        gallerySort.value   = 'default';
+        galleryFilters.forEach(b => b.classList.toggle('active', b.dataset.filter === 'all'));
+        applyGallery();
+        galleryPopup.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeGallery() {
+        galleryPopup.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    viewMoreBtn.addEventListener('click', openGallery);
+    galleryClose.addEventListener('click', closeGallery);
+    galleryPopup.addEventListener('click', e => { if (e.target === galleryPopup) closeGallery(); });
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && galleryPopup.classList.contains('open')) closeGallery();
+    });
+
+    galleryFilters.forEach(btn => {
+        btn.addEventListener('click', () => {
+            galleryFilters.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            gFilter = btn.dataset.filter;
+            applyGallery();
+        });
+    });
+    gallerySearch.addEventListener('input', () => { gSearch = gallerySearch.value.trim().toLowerCase(); applyGallery(); });
+    gallerySort.addEventListener('change', () => { gSort = gallerySort.value; applyGallery(); });
+
+
+    /* ── STREAM COUNT ──
+       Set BASE_STREAM_COUNT to your actual combined stream/view total.
+       (Check Desi Sangeeth YouTube + Spotify for Ananda Bathena totals)
+       Displayed floored to the nearest million (e.g. 2,400,000 → "2M+")
+    ── */
+    const BASE_STREAM_COUNT = 1500000; // <-- UPDATE THIS NUMBER
+    const liveNumEl = document.getElementById('live-stream-num');
+    if (liveNumEl) {
+        const millions = Math.floor(BASE_STREAM_COUNT / 1000000);
+        liveNumEl.textContent = millions >= 1 ? millions + 'M+' : (BASE_STREAM_COUNT / 1000).toFixed(0) + 'K+';
+    }
+
+
+    /* ── CONTACT FORM (Formspree AJAX) ── */
+    const contactForm = document.getElementById('contact-form');
+    const cfSuccess   = document.getElementById('cf-success');
+    if (contactForm) {
+        contactForm.addEventListener('submit', async e => {
+            e.preventDefault();
+            const data = new FormData(contactForm);
+            try {
+                const res = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: data,
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (res.ok) {
+                    contactForm.style.display = 'none';
+                    cfSuccess.style.display = 'block';
+                } else {
+                    alert('Something went wrong. Please email me directly.');
+                }
+            } catch {
+                alert('Network error. Please email me directly.');
+            }
+        });
+    }
+
+
+    /* ── STUDIO PARALLAX ── */
+    const studioSection = document.getElementById('studio');
+    const studioImg     = document.getElementById('studio-img');
+    if (studioImg && studioSection) {
+        window.addEventListener('scroll', () => {
+            const rect = studioSection.getBoundingClientRect();
+            if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+            const progress = -rect.top / window.innerHeight;
+            studioImg.style.transform = `translateY(${progress * 55}px)`;
+        }, { passive: true });
+    }
+
+</script>
+</body>
+</html>
