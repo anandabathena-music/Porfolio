@@ -1106,7 +1106,37 @@
         letter-spacing: 0.2em;
         text-transform: uppercase;
         color: var(--gold);
-        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    /* Formspree library shows/hides these via inline style */
+    .cf-field-error {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: #e05c5c;
+        margin-bottom: 12px;
+    }
+
+    [data-fs-error] {
+        display: block;
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: #e05c5c;
+        margin-top: 4px;
+    }
+
+    .cf-input[aria-invalid="true"],
+    .cf-textarea[aria-invalid="true"] {
+        border-bottom-color: #e05c5c;
+    }
+
+    .cf-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
     }
 
     /* ============================================================
@@ -1629,6 +1659,9 @@
         Create a form, copy your form ID, and replace YOUR_FORM_ID below.
         e.g. action="https://formspree.io/f/xyzabcde"
     -->
+    <div class="cf-success" data-fs-success>Message sent — I'll be in touch soon.</div>
+    <div class="cf-field-error" data-fs-error></div>
+
     <form
         id="contact-form"
         class="contact-form"
@@ -1637,36 +1670,36 @@
     >
         <div class="cf-field">
             <label class="cf-label" for="cf-name">Name</label>
-            <input class="cf-input" id="cf-name" name="name" type="text" required placeholder="Your name">
+            <input class="cf-input" id="cf-name" name="name" type="text" required placeholder="Your name" data-fs-field>
         </div>
 
         <div class="cf-field">
             <label class="cf-label" for="cf-phone">Contact No</label>
-            <input class="cf-input" id="cf-phone" name="phone" type="tel" placeholder="+91 00000 00000">
+            <input class="cf-input" id="cf-phone" name="phone" type="tel" placeholder="+91 00000 00000" data-fs-field>
         </div>
 
         <div class="cf-field">
             <label class="cf-label" for="cf-email">Email</label>
-            <input class="cf-input" id="cf-email" name="email" type="email" required placeholder="your@email.com">
+            <input class="cf-input" id="cf-email" name="email" type="email" required placeholder="your@email.com" data-fs-field>
+            <span data-fs-error="email"></span>
         </div>
 
         <div class="cf-field">
             <label class="cf-label" for="cf-subject">Subject</label>
-            <input class="cf-input" id="cf-subject" name="subject" type="text" required placeholder="Film score, sound design, collab…">
+            <input class="cf-input" id="cf-subject" name="subject" type="text" required placeholder="Film score, sound design, collab…" data-fs-field>
         </div>
 
         <div class="cf-field full">
             <label class="cf-label" for="cf-message">Message</label>
-            <textarea class="cf-textarea" id="cf-message" name="message" required placeholder="Tell me about your project…"></textarea>
+            <textarea class="cf-textarea" id="cf-message" name="message" required placeholder="Tell me about your project…" data-fs-field></textarea>
+            <span data-fs-error="message"></span>
         </div>
 
         <div class="cf-submit-row">
             <span class="cf-note">Your message goes straight to my inbox.</span>
-            <button class="cf-btn" type="submit">Send Message</button>
+            <button class="cf-btn" type="submit" data-fs-submit-btn>Send Message</button>
         </div>
     </form>
-
-    <p class="cf-success" id="cf-success">Message sent — I'll be in touch soon.</p>
 
 </section>
 
@@ -1935,30 +1968,9 @@
     }
 
 
-    /* ── CONTACT FORM (Formspree AJAX) ── */
-    const contactForm = document.getElementById('contact-form');
-    const cfSuccess   = document.getElementById('cf-success');
-    if (contactForm) {
-        contactForm.addEventListener('submit', async e => {
-            e.preventDefault();
-            const data = new FormData(contactForm);
-            try {
-                const res = await fetch(contactForm.action, {
-                    method: 'POST',
-                    body: data,
-                    headers: { 'Accept': 'application/json' }
-                });
-                if (res.ok) {
-                    contactForm.style.display = 'none';
-                    cfSuccess.style.display = 'block';
-                } else {
-                    alert('Something went wrong. Please email me directly.');
-                }
-            } catch {
-                alert('Network error. Please email me directly.');
-            }
-        });
-    }
+    /* ── CONTACT FORM (Formspree @formspree/ajax) ── */
+    window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+    formspree('initForm', { formElement: '#contact-form', formId: 'xkokvpqn' });
 
 
     /* ── STUDIO PARALLAX ── */
@@ -1974,5 +1986,6 @@
     }
 
 </script>
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 </body>
 </html>
