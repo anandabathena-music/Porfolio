@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,700;0,900;1,300&display=swap" rel="stylesheet">
+    <script src="https://www.google.com/recaptcha/api.js?render=6LdGa8QsAAAAANTZt5uMWxU_EDrlR5Ka6sw5zpIY"></script>
     <style>
 
     /* ============================================================
@@ -90,6 +91,62 @@
     }
 
     .nav-links a:hover { opacity: 1; }
+
+    /* Hamburger button — mobile only */
+    .nav-hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 4px;
+    }
+
+    .nav-hamburger span {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background: var(--text);
+        border-radius: 2px;
+        transition: transform 0.25s, opacity 0.25s;
+    }
+
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile nav drawer */
+    .nav-mobile-drawer {
+        display: none;
+        position: fixed;
+        top: var(--nav-h);
+        left: 0; right: 0;
+        background: rgba(22,22,20,0.98);
+        border-bottom: 1px solid var(--border);
+        z-index: 499;
+        flex-direction: column;
+        padding: 20px 24px 28px;
+        gap: 0;
+    }
+
+    .nav-mobile-drawer.open { display: flex; }
+
+    .nav-mobile-drawer a {
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--text);
+        text-decoration: none;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--border);
+        opacity: 0.7;
+        transition: opacity 0.2s;
+    }
+
+    .nav-mobile-drawer a:last-child { border-bottom: none; }
+    .nav-mobile-drawer a:hover { opacity: 1; }
 
     /* ============================================================
        SHARED
@@ -694,7 +751,12 @@
         text-transform: uppercase;
         color: var(--gold);
         margin-bottom: 8px;
+        cursor: pointer;
+        display: inline-block;
+        transition: color 0.15s;
     }
+
+    .pcard-cat:hover { color: var(--gold-light); }
 
     .pcard-title {
         font-weight: 900;
@@ -719,7 +781,7 @@
         font-size: 8px;
         font-weight: 700;
         letter-spacing: 0.2em;
-        color: var(--text-dim);
+        color: var(--text-muted);
     }
 
     .pcard-watch {
@@ -845,6 +907,22 @@
     }
 
     .modal-about:empty { display: none; }
+
+    .modal-project-link {
+        display: inline-block;
+        margin-top: 16px;
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--gold);
+        text-decoration: none;
+        border-bottom: 1px solid var(--gold);
+        padding-bottom: 2px;
+        transition: color 0.2s, border-color 0.2s;
+    }
+
+    .modal-project-link:hover { color: var(--gold-light); border-color: var(--gold-light); }
 
     /* ============================================================
        UPDATES + WORKSHOPS
@@ -986,8 +1064,8 @@
 
     .studio-sub {
         font-size: clamp(0.95rem, 1.4vw, 1.3rem);
-        color: var(--text-muted);
-        font-weight: 300;
+        color: var(--text);
+        font-weight: 400;
         line-height: 1.7;
         max-width: 680px;
         font-style: normal;
@@ -1016,12 +1094,16 @@
     }
 
     /* Contact form */
+    .cf-form-wrap {
+        position: relative;
+        margin-top: 40px;
+    }
+
     .contact-form {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 2px;
         background: var(--border);
-        margin-top: 40px;
     }
 
     .cf-field {
@@ -1040,6 +1122,58 @@
         text-transform: uppercase;
         color: var(--gold);
         margin-bottom: 10px;
+    }
+
+    .cf-char-count {
+        font-size: 8px;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        color: var(--text-dim);
+        margin-top: 6px;
+        text-align: right;
+    }
+
+    .cf-char-count.over { color: #e05c5c; }
+
+    /* Phone field: country code text input + number input side by side */
+    .cf-phone-row {
+        display: flex;
+        gap: 0;
+        align-items: flex-end;
+        border-bottom: 1px solid var(--border);
+        transition: border-color 0.2s;
+    }
+
+    .cf-phone-row:focus-within { border-bottom-color: var(--gold); }
+
+    .cf-country-code {
+        background: none;
+        border: none;
+        border-right: 1px solid var(--border);
+        color: var(--text);
+        font-family: 'Montserrat', sans-serif;
+        font-size: clamp(0.875rem, 1vw, 1.1rem);
+        font-weight: 300;
+        padding: 6px 10px 6px 0;
+        outline: none;
+        width: 64px;
+        flex-shrink: 0;
+        text-align: center;
+    }
+
+    .cf-country-code::placeholder { color: var(--text-dim); }
+
+    .cf-phone-num {
+        background: none;
+        border: none;
+        color: var(--text);
+        font-family: 'Montserrat', sans-serif;
+        font-size: clamp(0.875rem, 1vw, 1.1rem);
+        font-weight: 300;
+        padding: 6px 0 6px 10px;
+        outline: none;
+        flex: 1;
+        min-width: 0;
     }
 
     .cf-input,
@@ -1099,17 +1233,54 @@
 
     .cf-btn:hover { background: var(--gold-light); }
 
-    .cf-success {
-        display: none;
-        font-size: 11px;
-        font-weight: 700;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        color: var(--gold);
-        margin-bottom: 20px;
+    .cf-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
     }
 
-    /* Formspree library shows/hides these via inline style */
+    /* Success overlay — sits on top of the form */
+    .cf-overlay {
+        display: none;
+        position: absolute;
+        inset: 0;
+        background: rgba(22, 22, 20, 0.72);
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(2px);
+        z-index: 10;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .cf-overlay.visible {
+        display: flex;
+    }
+
+    .cf-overlay-icon {
+        font-size: 28px;
+        color: var(--gold);
+        line-height: 1;
+    }
+
+    .cf-overlay-msg {
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--gold);
+        text-align: center;
+    }
+
+    .cf-overlay-sub {
+        font-size: 10px;
+        font-weight: 300;
+        letter-spacing: 0.1em;
+        color: var(--text-muted);
+        text-align: center;
+    }
+
+    /* Formspree field-level errors */
     .cf-field-error {
         font-size: 10px;
         font-weight: 700;
@@ -1132,11 +1303,6 @@
     .cf-input[aria-invalid="true"],
     .cf-textarea[aria-invalid="true"] {
         border-bottom-color: #e05c5c;
-    }
-
-    .cf-btn:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
     }
 
     /* ============================================================
@@ -1171,6 +1337,7 @@
     @media (max-width: 768px) {
         #nav { padding: 0 24px; }
         .nav-links { display: none; }
+        .nav-hamburger { display: flex; }
 
         #about { grid-template-columns: 1fr; gap: 32px; padding: calc(var(--nav-h) + 24px) 24px 48px; }
 
@@ -1186,11 +1353,67 @@
         .modal-close { top: -40px; }
 
         footer { flex-direction: column; gap: 8px; text-align: center; padding: 20px; }
+
+        /* Mobile inline "view more" — hide the popup trigger */
+        .view-more-btn { display: none !important; }
+        #gallery-popup { display: none !important; }
+
+        /* Mobile inline expanded cards — list layout */
+        .pcard.mobile-expanded {
+            display: flex !important;
+            flex-direction: row;
+            grid-column: 1 / -1;
+            border-bottom: 1px solid var(--border);
+            border-right: none;
+        }
+
+        .pcard.mobile-expanded .pcard-thumb {
+            width: 90px;
+            min-width: 90px;
+            aspect-ratio: unset;
+            height: 90px;
+            flex-shrink: 0;
+        }
+
+        .pcard.mobile-expanded .pcard-info {
+            padding: 10px 14px 12px;
+        }
+
+        .pcard.mobile-expanded .pcard-title {
+            font-size: 0.78rem;
+            line-height: 1.25;
+        }
+
+        /* Mobile View More inline button */
+        .view-more-mobile-btn {
+            display: block;
+            width: 100%;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--text);
+            background: none;
+            border: 1px solid var(--border);
+            padding: 14px 0;
+            cursor: pointer;
+            margin-top: 16px;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .view-more-mobile-btn:hover { border-color: var(--gold); color: var(--gold); }
+        .view-more-mobile-btn.all-shown { display: none; }
     }
 
     @media (max-width: 480px) {
         .work-grid { grid-template-columns: 1fr; min-height: 280px; }
         .work-results-count { display: none; }
+    }
+
+    /* Desktop: hide mobile-only elements */
+    @media (min-width: 769px) {
+        .view-more-mobile-btn { display: none; }
     }
 
     </style>
@@ -1208,7 +1431,18 @@
         <li><a href="#recognition">Updates</a></li>
         <li><a href="#contact">Contact</a></li>
     </ul>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
 </nav>
+
+<!-- Mobile nav drawer -->
+<div class="nav-mobile-drawer" id="nav-mobile-drawer">
+    <a href="#about"      id="mdrawer-about">About</a>
+    <a href="#work"       id="mdrawer-work">Work</a>
+    <a href="#recognition" id="mdrawer-updates">Updates</a>
+    <a href="#contact"    id="mdrawer-contact">Contact</a>
+</div>
 
 
 <!-- ============================================================
@@ -1226,20 +1460,21 @@
     <div class="about-right">
         <div class="section-number">About</div>
         <h1 class="about-name">Ananda<br><span>Bathena</span></h1>
-        <p class="about-tagline">Alumnus, IDC School of Design, IIT Bombay</p>
+        <p class="about-tagline">Sound Artist specializing in Music, Sound Design &amp; Virtual Reality</p>
         <p class="about-bio">
-            I'm a multidisciplinary sound artist with a foundation in filmmaking, VR, and design thinking, creating immersive, story-driven audio experiences. My work spans feature films, advertising, original music, and XR.
+            I hold a Bachelor's and Master's degree from the IDC School of Design, IIT Bombay. In my thesis projects, I have worked on exploring sound and music in film and virtual reality. My foundation in design thinking, filmmaking, and storytelling makes my approach to sound, unique.
         </p>
         <p class="about-bio">
-            I composed and designed sound for the award-winning 6DoF VR experience <em>Into the Manhole</em>, recognized at FICCI BAF, Courant3D 2025, Laval Virtual and Busan International Short Film Festival.
+            After graduating, I worked on a feature film as <strong>sound recordist and music composer</strong>, followed by composing and designing sound for the award-winning 6DoF VR experience <em>Into the Manhole</em> — recognised at FICCI BAF, Courant3D 2025, Laval Virtual and Busan International Short Film Festival. I am currently working on a <strong>science documentary</strong> as music composer and sound designer.
+        </p>
+        <p class="about-bio">
+            Since 2022, I have been working full-time across music composition, sound design, and immersive audio — bringing a designer's precision and an artist's instinct to every project.
         </p>
         <div class="about-badges">
             <div class="about-badge">Film Score</div>
             <div class="about-badge">Sound Design</div>
             <div class="about-badge">VR · Spatial Audio</div>
             <div class="about-badge">Original Music</div>
-            <div class="about-badge">Post Production</div>
-            <div class="about-badge">Binaural Audio</div>
         </div>
     </div>
 
@@ -1271,13 +1506,13 @@
 
         <!-- Filter tabs -->
         <div class="work-filters" role="group" aria-label="Filter by category">
-            <button class="wfilt active" data-filter="all">All Projects</button>
+            <button class="wfilt active" data-filter="all">All</button>
             <button class="wfilt" data-filter="featured">Featured</button>
             <button class="wfilt" data-filter="original">Originals</button>
-            <button class="wfilt" data-filter="film">Film Songs</button>
-            <button class="wfilt" data-filter="score">Scores</button>
-            <button class="wfilt" data-filter="xr">XR</button>
-            <button class="wfilt" data-filter="ad">Advertisements</button>
+            <button class="wfilt" data-filter="film">Films</button>
+            <button class="wfilt" data-filter="score">Score</button>
+            <button class="wfilt" data-filter="xr">VR</button>
+            <button class="wfilt" data-filter="ad">Ads</button>
         </div>
 
         <!-- Sort -->
@@ -1303,13 +1538,14 @@
              data-featured="true"
              data-filter="xr"
              data-year="2025"
+             data-project-url="https://imxd.in/projects/into-the-manhole"
              data-about="6DoF VR experience | Composition &amp; Sound Design · 2025&#10;&#10;Grand Prix — Laval Virtual, France 2025&#10;Grand Prix — Courant3D, France 2025&#10;Best XR / Special Jury Mention — FICCI BAF Awards, Mumbai 2025&#10;Official Selection — Busan International Short Film Festival 2024">
             <div class="pcard-thumb">
                 <img src="https://img.youtube.com/vi/-4-xjF6OTHM/mqdefault.jpg" alt="Into the Manhole">
                 <div class="pcard-play"><div class="pcard-play-circle"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
             </div>
             <div class="pcard-info">
-                <div class="pcard-cat">XR · Spatial Audio · FICCI BAF</div>
+                <div class="pcard-cat" data-filter-tag="xr">VR</div>
                 <h3 class="pcard-title">Into the Manhole</h3>
                 <div class="pcard-foot"><span class="pcard-year">2025</span><span class="pcard-watch">Watch ↗</span></div>
             </div>
@@ -1327,7 +1563,7 @@
                 <div class="pcard-play"><div class="pcard-play-circle"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
             </div>
             <div class="pcard-info">
-                <div class="pcard-cat">XR · Spatial Audio</div>
+                <div class="pcard-cat" data-filter-tag="xr">VR</div>
                 <h3 class="pcard-title">Absence</h3>
                 <div class="pcard-foot"><span class="pcard-year">2022</span><span class="pcard-watch">Watch ↗</span></div>
             </div>
@@ -1345,7 +1581,7 @@
                 <div class="pcard-play"><div class="pcard-play-circle"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
             </div>
             <div class="pcard-info">
-                <div class="pcard-cat">Original · Anti Music · Alternate Music</div>
+                <div class="pcard-cat" data-filter-tag="original">Originals</div>
                 <h3 class="pcard-title">You Will Hate This (Ha Why?)</h3>
                 <div class="pcard-foot"><span class="pcard-year">2024</span><span class="pcard-watch">Watch ↗</span></div>
             </div>
@@ -1363,7 +1599,7 @@
                 <div class="pcard-play"><div class="pcard-play-circle"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
             </div>
             <div class="pcard-info">
-                <div class="pcard-cat">Original · Telugu · Lyrical</div>
+                <div class="pcard-cat" data-filter-tag="original">Originals</div>
                 <h3 class="pcard-title">Endiya</h3>
                 <div class="pcard-foot"><span class="pcard-year">2024</span><span class="pcard-watch">Watch ↗</span></div>
             </div>
@@ -1381,7 +1617,7 @@
                 <div class="pcard-play"><div class="pcard-play-circle"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
             </div>
             <div class="pcard-info">
-                <div class="pcard-cat">Advertisement · Sound Design</div>
+                <div class="pcard-cat" data-filter-tag="ad">Ads</div>
                 <h3 class="pcard-title">ICICI Animated Ad</h3>
                 <div class="pcard-foot"><span class="pcard-year">2020</span><span class="pcard-watch">Watch ↗</span></div>
             </div>
@@ -1398,7 +1634,7 @@
                 <div class="pcard-play"><div class="pcard-play-circle"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
             </div>
             <div class="pcard-info">
-                <div class="pcard-cat">Film Song · Safar Mein Sheher · Desi Sangeet Music</div>
+                <div class="pcard-cat" data-filter-tag="film">Films</div>
                 <h3 class="pcard-title">Safar Mein</h3>
                 <div class="pcard-foot"><span class="pcard-year">2025</span><span class="pcard-watch">Watch ↗</span></div>
             </div>
@@ -1415,7 +1651,7 @@
                 <div class="pcard-play"><div class="pcard-play-circle"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
             </div>
             <div class="pcard-info">
-                <div class="pcard-cat">Film Song · Lyrical · Desi Sangeet Music</div>
+                <div class="pcard-cat" data-filter-tag="film">Films</div>
                 <h3 class="pcard-title">Safar Mein (Lyrical)</h3>
                 <div class="pcard-foot"><span class="pcard-year">2025</span><span class="pcard-watch">Watch ↗</span></div>
             </div>
@@ -1433,7 +1669,7 @@
                 <div class="pcard-play"><div class="pcard-play-circle"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
             </div>
             <div class="pcard-info">
-                <div class="pcard-cat">Film Song · Lyrical · Desi Sangeet Music</div>
+                <div class="pcard-cat" data-filter-tag="film">Films</div>
                 <h3 class="pcard-title">Is Sheher Mein (Lyrical)</h3>
                 <div class="pcard-foot">
                     <span class="pcard-year">2025</span>
@@ -1454,7 +1690,7 @@
                 <div class="pcard-play"><div class="pcard-play-circle"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
             </div>
             <div class="pcard-info">
-                <div class="pcard-cat">Film Score · Lakes and Puddles</div>
+                <div class="pcard-cat" data-filter-tag="score">Score</div>
                 <h3 class="pcard-title">Sejal's Theme / Lullaby</h3>
                 <div class="pcard-foot"><span class="pcard-year">2022</span><span class="pcard-watch">Watch ↗</span></div>
             </div>
@@ -1471,7 +1707,7 @@
                 <div class="pcard-play"><div class="pcard-play-circle"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
             </div>
             <div class="pcard-info">
-                <div class="pcard-cat">Film Score · Short Film · Trailer</div>
+                <div class="pcard-cat" data-filter-tag="score">Score</div>
                 <h3 class="pcard-title">Lakes and Puddles</h3>
                 <div class="pcard-foot"><span class="pcard-year">2022</span><span class="pcard-watch">Watch ↗</span></div>
             </div>
@@ -1484,6 +1720,9 @@
     <div class="view-more-wrap">
         <button class="view-more-btn" id="view-more-btn">View All Projects ↗</button>
     </div>
+
+    <!-- Mobile inline view more -->
+    <button class="view-more-mobile-btn" id="view-more-mobile-btn">View More Projects ↓</button>
 
 </section>
 
@@ -1508,13 +1747,13 @@
             </div>
             <!-- Filters -->
             <div class="work-filters" role="group" aria-label="Filter by category" id="gallery-filters">
-                <button class="wfilt active" data-filter="all">All Projects</button>
+                <button class="wfilt active" data-filter="all">All</button>
                 <button class="wfilt" data-filter="featured">Featured</button>
                 <button class="wfilt" data-filter="original">Originals</button>
-                <button class="wfilt" data-filter="film">Film Songs</button>
-                <button class="wfilt" data-filter="score">Scores</button>
-                <button class="wfilt" data-filter="xr">XR</button>
-                <button class="wfilt" data-filter="ad">Advertisements</button>
+                <button class="wfilt" data-filter="film">Films</button>
+                <button class="wfilt" data-filter="score">Score</button>
+                <button class="wfilt" data-filter="xr">VR</button>
+                <button class="wfilt" data-filter="ad">Ads</button>
             </div>
             <!-- Sort -->
             <select class="work-sort" id="gallery-sort" aria-label="Sort projects">
@@ -1659,47 +1898,67 @@
         Create a form, copy your form ID, and replace YOUR_FORM_ID below.
         e.g. action="https://formspree.io/f/xyzabcde"
     -->
-    <div class="cf-success" data-fs-success>Message sent — I'll be in touch soon.</div>
     <div class="cf-field-error" data-fs-error></div>
 
-    <form
-        id="contact-form"
-        class="contact-form"
-        action="https://formspree.io/f/xkokvpqn"
-        method="POST"
-    >
-        <div class="cf-field">
-            <label class="cf-label" for="cf-name">Name</label>
-            <input class="cf-input" id="cf-name" name="name" type="text" required placeholder="Your name" data-fs-field>
+    <div class="cf-form-wrap">
+
+        <!-- Success overlay -->
+        <div class="cf-overlay" id="cf-overlay">
+            <div class="cf-overlay-icon">✓</div>
+            <div class="cf-overlay-msg">Message sent — I'll be in touch soon.</div>
+            <div class="cf-overlay-sub">Check your inbox for a confirmation.</div>
         </div>
 
-        <div class="cf-field">
-            <label class="cf-label" for="cf-phone">Contact No</label>
-            <input class="cf-input" id="cf-phone" name="phone" type="tel" placeholder="+91 00000 00000" data-fs-field>
-        </div>
+        <form
+            id="contact-form"
+            class="contact-form"
+            action="https://formspree.io/f/xkokvpqn"
+            method="POST"
+        >
+            <div class="cf-field">
+                <label class="cf-label" for="cf-name">Name</label>
+                <input class="cf-input" id="cf-name" name="name" type="text" required maxlength="80" placeholder="Your name" data-fs-field>
+                <span class="cf-char-count" id="cc-name">80 chars remaining</span>
+            </div>
 
-        <div class="cf-field">
-            <label class="cf-label" for="cf-email">Email</label>
-            <input class="cf-input" id="cf-email" name="email" type="email" required placeholder="your@email.com" data-fs-field>
-            <span data-fs-error="email"></span>
-        </div>
+            <div class="cf-field">
+                <label class="cf-label" for="cf-country">Contact No</label>
+                <div class="cf-phone-row">
+                    <input class="cf-country-code" id="cf-country" name="country_code" type="text"
+                           required pattern="\+[0-9]{1,4}" maxlength="6"
+                           placeholder="+91" data-fs-field>
+                    <input class="cf-phone-num" id="cf-phone" name="phone" type="tel" required
+                           pattern="[0-9\s\-]{7,15}" maxlength="15"
+                           placeholder="00000 00000" data-fs-field>
+                </div>
+            </div>
 
-        <div class="cf-field">
-            <label class="cf-label" for="cf-subject">Subject</label>
-            <input class="cf-input" id="cf-subject" name="subject" type="text" required placeholder="Film score, sound design, collab…" data-fs-field>
-        </div>
+            <div class="cf-field">
+                <label class="cf-label" for="cf-email">Email</label>
+                <input class="cf-input" id="cf-email" name="email" type="email" required maxlength="120" placeholder="your@email.com" data-fs-field>
+                <span data-fs-error="email"></span>
+            </div>
 
-        <div class="cf-field full">
-            <label class="cf-label" for="cf-message">Message</label>
-            <textarea class="cf-textarea" id="cf-message" name="message" required placeholder="Tell me about your project…" data-fs-field></textarea>
-            <span data-fs-error="message"></span>
-        </div>
+            <div class="cf-field">
+                <label class="cf-label" for="cf-subject">Subject</label>
+                <input class="cf-input" id="cf-subject" name="subject" type="text" required maxlength="100" placeholder="Film score, sound design, collab…" data-fs-field>
+                <span class="cf-char-count" id="cc-subject">100 chars remaining</span>
+            </div>
 
-        <div class="cf-submit-row">
-            <span class="cf-note">Your message goes straight to my inbox.</span>
-            <button class="cf-btn" type="submit" data-fs-submit-btn>Send Message</button>
-        </div>
-    </form>
+            <div class="cf-field full">
+                <label class="cf-label" for="cf-message">Message</label>
+                <textarea class="cf-textarea" id="cf-message" name="message" required maxlength="1000" placeholder="Tell me about your project…" data-fs-field></textarea>
+                <span class="cf-char-count" id="cc-message">1000 chars remaining</span>
+                <span data-fs-error="message"></span>
+            </div>
+
+            <div class="cf-submit-row">
+                <span class="cf-note">Your message goes straight to my inbox.</span>
+                <button class="cf-btn" type="submit" data-fs-submit-btn>Send Message</button>
+            </div>
+        </form>
+
+    </div>
 
 </section>
 
@@ -1708,7 +1967,7 @@
      FOOTER
      ============================================================ -->
 <footer>
-    <span class="footer-copy">© 2025 Ananda Bathena — Composer &amp; Sound Designer</span>
+    <span class="footer-copy">© 2026 Ananda Bathena — Composer &amp; Sound Designer</span>
     <span class="footer-loc">Mumbai, India</span>
 </footer>
 
@@ -1723,6 +1982,25 @@
     window.addEventListener('scroll', () => {
         nav.classList.toggle('scrolled', window.scrollY > 60);
     }, { passive: true });
+
+    /* ── HAMBURGER MENU ── */
+    const hamburger   = document.getElementById('nav-hamburger');
+    const mobileDrawer = document.getElementById('nav-mobile-drawer');
+    if (hamburger && mobileDrawer) {
+        hamburger.addEventListener('click', () => {
+            const open = mobileDrawer.classList.toggle('open');
+            hamburger.classList.toggle('open', open);
+            document.body.style.overflow = open ? 'hidden' : '';
+        });
+        /* Close on link click */
+        mobileDrawer.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', () => {
+                mobileDrawer.classList.remove('open');
+                hamburger.classList.remove('open');
+                document.body.style.overflow = '';
+            });
+        });
+    }
 
 
     /* ── STAT COUNTERS ── */
@@ -1756,15 +2034,33 @@
     function openModal(card) {
         const videoId   = card.dataset.videoId;
         const vimeoId   = card.dataset.vimeoId;
-        const videoSrc  = card.dataset.videoSrc;
-        const title     = card.dataset.title || '';
-        const catEl     = card.querySelector('.pcard-cat');
-        const cat       = catEl ? catEl.textContent : '';
-        const about     = card.dataset.about || '';
+        const videoSrc     = card.dataset.videoSrc;
+        const title        = card.dataset.title || '';
+        const catEl        = card.querySelector('.pcard-cat');
+        const cat          = catEl ? catEl.textContent : '';
+        const about        = card.dataset.about || '';
+        const projectUrl   = card.dataset.projectUrl || '';
 
         modalTitle.textContent = title;
         modalCat.textContent   = cat;
-        modalAbout.textContent = about;
+
+        /* Render about text + optional project link */
+        modalAbout.innerHTML = '';
+        if (about) {
+            const textNode = document.createTextNode(about);
+            modalAbout.appendChild(textNode);
+        }
+        if (projectUrl) {
+            const link = document.createElement('a');
+            link.href      = projectUrl;
+            link.target    = '_blank';
+            link.rel       = 'noopener noreferrer';
+            link.className = 'modal-project-link';
+            link.textContent = 'Visit Project Website ↗';
+            modalAbout.appendChild(document.createElement('br'));
+            modalAbout.appendChild(link);
+        }
+
         modalPlayer.innerHTML  = '';
 
         if (videoId) {
@@ -1813,21 +2109,26 @@
     });
 
 
-    /* ── WORK GRID: max 8, filter/sort on main grid ── */
-    const MAIN_MAX    = 8;
+    /* ── WORK GRID ── */
+    const MAIN_MAX_DESKTOP = 8;
+    const MAIN_MAX_MOBILE  = 4;
     const workGrid    = document.getElementById('work-grid');
     const workEmpty   = document.getElementById('work-empty');
     const workCount   = document.getElementById('work-results-count');
     const searchInput = document.getElementById('work-search');
     const sortSelect  = document.getElementById('work-sort');
     const mainFilterBtns = document.querySelectorAll('#work .wfilt');
+    const mobileViewMoreBtn = document.getElementById('view-more-mobile-btn');
 
-    let mainFilter = 'all';
-    let mainSearch = '';
-    let mainSort   = 'default';
+    let mainFilter   = 'all';
+    let mainSearch   = '';
+    let mainSort     = 'default';
+    let mobileShowAll = false;
 
     const allCards = Array.from(workGrid.querySelectorAll('.pcard'));
     allCards.forEach((c, i) => c.dataset.origIdx = i);
+
+    function isMobile() { return window.innerWidth <= 768; }
 
     function matchesFilter(card, filter) {
         if (filter === 'all') return true;
@@ -1849,33 +2150,76 @@
         });
         visible = sortCards(visible, mainSort);
 
-        allCards.forEach(c => { c.classList.add('hidden'); c.classList.remove('main-hidden'); });
+        const mobile = isMobile();
+        const max    = mobile ? (mobileShowAll ? visible.length : MAIN_MAX_MOBILE) : MAIN_MAX_DESKTOP;
+
+        allCards.forEach(c => {
+            c.classList.add('hidden');
+            c.classList.remove('main-hidden', 'mobile-expanded');
+        });
+
         visible.forEach((c, i) => {
-            if (i < MAIN_MAX) {
+            if (i < max) {
                 c.classList.remove('hidden');
+                if (mobile && i >= MAIN_MAX_MOBILE) c.classList.add('mobile-expanded');
                 workGrid.appendChild(c);
             } else {
                 c.classList.add('main-hidden');
             }
         });
-        workEmpty.style.display = visible.length === 0 ? 'block' : 'none';
-        workCount.textContent = `${visible.length} Project${visible.length !== 1 ? 's' : ''}`;
 
-        /* Show/hide View More button */
-        document.getElementById('view-more-btn').style.display = visible.length > MAIN_MAX ? 'inline-block' : 'none';
+        workEmpty.style.display = visible.length === 0 ? 'block' : 'none';
+        workCount.textContent   = `${visible.length} Project${visible.length !== 1 ? 's' : ''}`;
+
+        /* Desktop View More popup button */
+        document.getElementById('view-more-btn').style.display =
+            (!mobile && visible.length > MAIN_MAX_DESKTOP) ? 'inline-block' : 'none';
+
+        /* Mobile inline View More button */
+        if (mobileViewMoreBtn) {
+            if (mobile && visible.length > MAIN_MAX_MOBILE && !mobileShowAll) {
+                mobileViewMoreBtn.style.display = 'block';
+                mobileViewMoreBtn.textContent   = `View ${visible.length - MAIN_MAX_MOBILE} More Projects ↓`;
+                mobileViewMoreBtn.classList.remove('all-shown');
+            } else {
+                mobileViewMoreBtn.style.display = 'none';
+            }
+        }
     }
+
+    if (mobileViewMoreBtn) {
+        mobileViewMoreBtn.addEventListener('click', () => {
+            mobileShowAll = true;
+            applyMainGrid();
+        });
+    }
+
+    /* Reset mobileShowAll when filter/search changes */
+    function resetAndApply() { mobileShowAll = false; applyMainGrid(); }
 
     mainFilterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             mainFilterBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             mainFilter = btn.dataset.filter;
-            applyMainGrid();
+            resetAndApply();
         });
     });
-    searchInput.addEventListener('input', () => { mainSearch = searchInput.value.trim().toLowerCase(); applyMainGrid(); });
-    sortSelect.addEventListener('change', () => { mainSort = sortSelect.value; applyMainGrid(); });
+    searchInput.addEventListener('input', () => { mainSearch = searchInput.value.trim().toLowerCase(); resetAndApply(); });
+    sortSelect.addEventListener('change',  () => { mainSort = sortSelect.value; resetAndApply(); });
+    window.addEventListener('resize', () => { mobileShowAll = false; applyMainGrid(); }, { passive: true });
     applyMainGrid();
+
+    /* ── TAG CLICK → FILTER ── */
+    workGrid.addEventListener('click', e => {
+        const tag = e.target.closest('[data-filter-tag]');
+        if (!tag) return;
+        e.stopPropagation();
+        const filter = tag.dataset.filterTag;
+        mainFilterBtns.forEach(b => b.classList.toggle('active', b.dataset.filter === filter));
+        mainFilter = filter;
+        resetAndApply();
+    });
 
 
     /* ── GALLERY POPUP ── */
@@ -1968,9 +2312,80 @@
     }
 
 
-    /* ── CONTACT FORM (Formspree @formspree/ajax) ── */
-    window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
-    formspree('initForm', { formElement: '#contact-form', formId: 'xkokvpqn' });
+    /* ── CHAR COUNTERS ── */
+    function initCharCount(inputId, counterId, max) {
+        const input = document.getElementById(inputId);
+        const counter = document.getElementById(counterId);
+        if (!input || !counter) return;
+        function update() {
+            const rem = max - input.value.length;
+            counter.textContent = rem + ' chars remaining';
+            counter.classList.toggle('over', rem < 0);
+        }
+        input.addEventListener('input', update);
+        update();
+    }
+    initCharCount('cf-name',    'cc-name',    80);
+    initCharCount('cf-subject', 'cc-subject', 100);
+    initCharCount('cf-message', 'cc-message', 1000);
+
+
+    /* ── CONTACT FORM (Formspree AJAX) ── */
+    const contactForm = document.getElementById('contact-form');
+    const cfOverlay   = document.getElementById('cf-overlay');
+
+    if (contactForm && cfOverlay) {
+        contactForm.addEventListener('submit', async e => {
+            e.preventDefault();
+
+            /* Merge country code (manual text) + phone into one field for submission */
+            const countryEl = document.getElementById('cf-country');
+            const phoneEl   = document.getElementById('cf-phone');
+            const combined  = (countryEl.value.trim() + ' ' + phoneEl.value.trim()).trim();
+            const hiddenPhone = document.createElement('input');
+            hiddenPhone.type  = 'hidden';
+            hiddenPhone.name  = 'phone_full';
+            hiddenPhone.value = combined;
+            contactForm.appendChild(hiddenPhone);
+
+            const submitBtn = contactForm.querySelector('[data-fs-submit-btn]');
+            if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
+
+            try {
+                /* Get reCAPTCHA v3 token (invisible — no user interaction needed) */
+                let recaptchaToken = '';
+                if (typeof grecaptcha !== 'undefined') {
+                    recaptchaToken = await new Promise(resolve =>
+                        grecaptcha.ready(() =>
+                            grecaptcha.execute('6LdGa8QsAAAAANTZt5uMWxU_EDrlR5Ka6sw5zpIY', { action: 'contact' })
+                                      .then(resolve)
+                        )
+                    );
+                }
+                const formData = new FormData(contactForm);
+                if (recaptchaToken) formData.append('g-recaptcha-response', recaptchaToken);
+
+                const res = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (res.ok) {
+                    /* Disable all inputs so the form is read-only under the overlay */
+                    contactForm.querySelectorAll('input, textarea, select, button').forEach(el => el.disabled = true);
+                    cfOverlay.classList.add('visible');
+                } else {
+                    if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Send Message'; }
+                    alert('Something went wrong. Please email me directly at contact@anandabathena.com');
+                }
+            } catch {
+                if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Send Message'; }
+                alert('Network error. Please email me directly at contact@anandabathena.com');
+            } finally {
+                contactForm.removeChild(hiddenPhone);
+            }
+        });
+    }
 
 
     /* ── STUDIO PARALLAX ── */
@@ -1986,6 +2401,5 @@
     }
 
 </script>
-<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 </body>
 </html>
