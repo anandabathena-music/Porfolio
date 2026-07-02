@@ -6,7 +6,7 @@
     <title>Ananda Bathena — Composer & Sound Designer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,700;0,900;1,300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Montserrat:ital,wght@0,300;0,400;0,700;0,900;1,300&display=swap" rel="stylesheet">
     <script src="https://www.google.com/recaptcha/api.js?render=6LdGa8QsAAAAANTZt5uMWxU_EDrlR5Ka6sw5zpIY"></script>
     <style>
 
@@ -37,6 +37,37 @@
         font-weight: 300;
         -webkit-font-smoothing: antialiased;
         overflow-x: hidden;
+    }
+
+    /* ============================================================
+       INTRO OVERLAY
+       ============================================================ */
+    #intro-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: var(--bg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        pointer-events: all;
+    }
+
+    .intro-tagline {
+        font-family: 'Montserrat', sans-serif;
+        font-style: italic;
+        font-weight: 300;
+        font-size: clamp(0.85rem, 2vw, 1.3rem);
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        opacity: 0;
+        animation: intro-in 0.6s ease forwards 0.2s;
+    }
+
+    @keyframes intro-in {
+        from { opacity: 0; transform: translateY(8px); }
+        to   { opacity: 1; transform: translateY(0); }
     }
 
     /* ============================================================
@@ -80,13 +111,13 @@
     }
 
     .nav-links a {
-        font-size: 10px;
+        font-size: 12px;
         font-weight: 700;
-        letter-spacing: 0.28em;
+        letter-spacing: 0.2em;
         text-transform: uppercase;
         color: var(--text);
         text-decoration: none;
-        opacity: 0.45;
+        opacity: 0.6;
         transition: opacity 0.2s;
     }
 
@@ -242,18 +273,16 @@
     }
 
     .about-stat-lbl {
-        font-size: 8px;
+        font-size: 10px;
         font-weight: 700;
-        letter-spacing: 0.22em;
+        letter-spacing: 0.18em;
         text-transform: uppercase;
         color: var(--text-muted);
     }
 
-    .about-right {}
-
     .about-name-row {
         display: flex;
-        align-items: flex-start;
+        align-items: stretch;
         gap: 20px;
         margin-bottom: 16px;
     }
@@ -273,8 +302,8 @@
     .about-socials-name {
         display: flex;
         flex-direction: column;
-        gap: 14px;
-        padding-top: 6px;
+        justify-content: space-between;
+        padding: 2px 0;
     }
 
     .about-social-link {
@@ -282,12 +311,10 @@
         align-items: center;
         color: var(--text-muted);
         transition: color 0.2s;
-        width: 18px;
-        height: 18px;
     }
 
     .about-social-link:hover { color: var(--gold); }
-    .about-social-link svg { width: 18px; height: 18px; display: block; }
+    .about-social-link svg { width: 20px; height: 20px; display: block; }
 
     .about-tagline {
         font-size: 9px;
@@ -416,9 +443,9 @@
         border: 1px solid var(--border);
         color: var(--text);
         font-family: 'Montserrat', sans-serif;
-        font-size: 10px;
+        font-size: 12px;
         font-weight: 700;
-        letter-spacing: 0.18em;
+        letter-spacing: 0.12em;
         text-transform: uppercase;
         padding: 11px 12px 11px 36px;
         outline: none;
@@ -436,9 +463,9 @@
 
     .wfilt {
         font-family: 'Montserrat', sans-serif;
-        font-size: 9px;
+        font-size: 11px;
         font-weight: 700;
-        letter-spacing: 0.22em;
+        letter-spacing: 0.15em;
         text-transform: uppercase;
         color: var(--text-muted);
         background: var(--surface);
@@ -461,9 +488,9 @@
         border: 1px solid var(--border);
         color: var(--text-muted);
         font-family: 'Montserrat', sans-serif;
-        font-size: 9px;
+        font-size: 11px;
         font-weight: 700;
-        letter-spacing: 0.22em;
+        letter-spacing: 0.12em;
         text-transform: uppercase;
         padding: 10px 14px;
         cursor: pointer;
@@ -481,9 +508,9 @@
 
     /* Results count */
     .work-results-count {
-        font-size: 9px;
+        font-size: 11px;
         font-weight: 700;
-        letter-spacing: 0.22em;
+        letter-spacing: 0.12em;
         text-transform: uppercase;
         color: var(--text-dim);
         margin-left: auto;
@@ -627,9 +654,9 @@
         border: 1px solid var(--border);
         color: var(--text);
         font-family: 'Montserrat', sans-serif;
-        font-size: 10px;
+        font-size: 12px;
         font-weight: 700;
-        letter-spacing: 0.18em;
+        letter-spacing: 0.12em;
         text-transform: uppercase;
         padding: 10px 12px 10px 34px;
         outline: none;
@@ -771,9 +798,9 @@
     }
 
     .pcard-cat {
-        font-size: 8px;
+        font-size: 10px;
         font-weight: 700;
-        letter-spacing: 0.28em;
+        letter-spacing: 0.18em;
         text-transform: uppercase;
         color: var(--gold);
         margin-bottom: 8px;
@@ -804,16 +831,16 @@
     }
 
     .pcard-year {
-        font-size: 8px;
+        font-size: 10px;
         font-weight: 700;
-        letter-spacing: 0.2em;
+        letter-spacing: 0.15em;
         color: var(--text-muted);
     }
 
     .pcard-watch {
-        font-size: 8px;
+        font-size: 10px;
         font-weight: 700;
-        letter-spacing: 0.2em;
+        letter-spacing: 0.15em;
         text-transform: uppercase;
         color: var(--gold);
         opacity: 0;
@@ -1039,6 +1066,313 @@
     @media (max-width: 900px) {
         .news-grid { grid-template-columns: 1fr; gap: 48px; }
     }
+
+    /* ============================================================
+       SHOWREEL VIDEO
+       ============================================================ */
+    #showreel {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+        background: #000;
+        border-bottom: 1px solid var(--border);
+    }
+
+    #showreel video {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .showreel-overlay {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        padding: 28px 40px;
+        background: linear-gradient(to top, rgba(0,0,0,0.28) 0%, transparent 35%);
+        pointer-events: none;
+    }
+
+    .showreel-badge {
+        font-size: 8px;
+        font-weight: 700;
+        letter-spacing: 0.45em;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.35);
+    }
+
+    /* ============================================================
+       POLAROID SCATTER GALLERY (inside #recognition)
+       ============================================================ */
+    .pg-wrap { margin-bottom: 64px; user-select: none; }
+
+    .pg-stage {
+        position: relative;
+        width: 100%;
+        height: 700px;
+        overflow: hidden;
+        cursor: default;
+    }
+
+    /* Cards — JS sets left/top/width/height/transform/opacity */
+    .pg-card { position: absolute; cursor: pointer; }
+
+    /* Smooth transitions added after first paint (class toggled by JS) */
+    .pg-card.pg-anim {
+        transition:
+            left      0.9s cubic-bezier(0.16,1,0.3,1),
+            top       0.9s cubic-bezier(0.16,1,0.3,1),
+            width     0.9s cubic-bezier(0.16,1,0.3,1),
+            height    0.9s cubic-bezier(0.16,1,0.3,1),
+            transform 0.9s cubic-bezier(0.16,1,0.3,1),
+            opacity   0.55s ease;
+    }
+
+    /* Image frame height transitions together with card */
+    .pg-card.pg-anim .pg-img-frame {
+        transition: height 0.9s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    /* Polaroid white frame */
+    .pg-polaroid {
+        position: relative;
+        width: 100%; height: 100%;
+        background: #FDFCF9;
+        padding: 9px 9px 0;
+        box-shadow: 0 6px 24px rgba(0,0,0,0.55), 0 2px 6px rgba(0,0,0,0.25);
+        transition: box-shadow 0.6s ease;
+        display: flex;
+        flex-direction: column;
+        border-radius: 2px;
+    }
+
+    .pg-card.active .pg-polaroid {
+        box-shadow: 0 30px 75px rgba(0,0,0,0.92), 0 0 0 1px rgba(255,255,255,0.1);
+    }
+
+    /* Image area — height set by JS for aspect-ratio fitting */
+    .pg-img-frame {
+        width: 100%;
+        overflow: hidden;
+        background: #d0cec9;
+        flex-shrink: 0;
+        position: relative;
+    }
+
+    .pg-img-frame img {
+        width: 100%; height: 100%;
+        object-fit: contain;
+        display: block;
+    }
+
+    /* Gold sparkle dot — top-right corner, appears when active */
+    .pg-sparkle {
+        position: absolute;
+        top: 14px; right: 14px;
+        width: 8px; height: 8px;
+        border-radius: 50%;
+        background: var(--gold);
+        opacity: 0; transform: scale(0);
+        transition: opacity 0.4s ease, transform 0.45s cubic-bezier(0.34,1.56,0.64,1);
+        z-index: 3;
+    }
+    .pg-card.active .pg-sparkle { opacity: 1; transform: scale(1); }
+
+    /* Bottom label area — flexible height */
+    .pg-label {
+        flex: 1;
+        padding: 8px 6px 8px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        overflow: hidden;
+        background: #FDFCF9;
+    }
+
+    .pg-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 10px; font-weight: 900;
+        color: #1a1a18;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        line-height: 1;
+        flex-shrink: 0;
+    }
+
+    /* Handwritten note — Homemade Apple */
+    .pg-note {
+        font-family: 'Homemade Apple', cursive;
+        font-size: 8.5px;
+        color: #666;
+        line-height: 1.5;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        opacity: 0.65;
+        transition: font-size 0.5s ease, opacity 0.4s ease;
+        flex-shrink: 1;
+    }
+    .pg-card.active .pg-note {
+        font-size: 12px;
+        -webkit-line-clamp: 5;
+        line-clamp: 5;
+        opacity: 1;
+    }
+
+    /* Location pin — slides up when active */
+    .pg-location {
+        display: flex; align-items: center; gap: 4px;
+        margin-top: auto;
+        opacity: 0; transform: translateY(5px);
+        transition: opacity 0.4s ease 0.15s, transform 0.4s ease 0.15s;
+        flex-shrink: 0;
+    }
+    .pg-card.active .pg-location { opacity: 1; transform: translateY(0); }
+
+    .pg-location-pin { font-size: 9px; line-height: 1; }
+
+    .pg-location-text {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 7px; font-weight: 700;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: #999;
+        white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+
+    /* Bottom bar */
+    .pg-bar {
+        display: flex; align-items: center; justify-content: center;
+        gap: 12px; padding-top: 20px; flex-wrap: wrap;
+    }
+
+    .pg-status {
+        display: flex; align-items: center; gap: 8px;
+        font-size: 8px; font-weight: 700; letter-spacing: 0.32em;
+        text-transform: uppercase; color: var(--text-dim);
+        border: 1px solid var(--border); padding: 8px 16px; border-radius: 999px;
+    }
+
+    .pg-status-dot {
+        width: 6px; height: 6px; border-radius: 50%;
+        background: #4ade80; flex-shrink: 0;
+    }
+
+    .pg-status-dot.paused { background: #fb923c; }
+
+    @keyframes pg-pulse { 0%,100%{opacity:1} 50%{opacity:0.35} }
+    .pg-status-dot:not(.paused) { animation: pg-pulse 2s infinite; }
+
+    .pg-dots { display: flex; align-items: center; gap: 8px; }
+
+    .pg-dot {
+        background: none; border: none; cursor: pointer;
+        padding: 4px; display: flex; align-items: center;
+    }
+
+    .pg-dot-inner {
+        background: var(--text-dim); border-radius: 999px;
+        width: 8px; height: 8px; transition: all 0.3s ease;
+    }
+
+    .pg-dot.active .pg-dot-inner { background: var(--gold); width: 26px; }
+
+    .pg-hint {
+        font-size: 8px; font-weight: 700; letter-spacing: 0.28em;
+        text-transform: uppercase; color: var(--text-dim);
+        border: 1px solid var(--border); padding: 8px 16px; border-radius: 999px;
+    }
+
+    /* Mobile: flat 2-col grid, JS positioning bypassed */
+    @media (max-width: 768px) {
+        .pg-stage {
+            height: auto;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 3px;
+        }
+        .pg-card {
+            position: static !important; width: 100% !important;
+            height: 220px !important; transform: none !important; opacity: 1 !important;
+        }
+        .pg-img-frame { height: 150px !important; }
+        .pg-wrap { margin-bottom: 40px; }
+        .pg-hint { display: none; }
+    }
+
+    @media (max-width: 480px) {
+        .pg-stage { grid-template-columns: 1fr; }
+        .pg-card { height: 260px !important; }
+        .pg-img-frame { height: 185px !important; }
+    }
+
+    /* ============================================================
+       PHOTO LIGHTBOX
+       ============================================================ */
+    #photo-lightbox {
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        background: rgba(8,8,6,0.97);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.25s;
+        padding: 60px 48px 48px;
+    }
+
+    #photo-lightbox.open { opacity: 1; pointer-events: auto; }
+
+    .lightbox-inner { position: relative; max-width: 1200px; width: 100%; }
+
+    .lightbox-img {
+        width: 100%;
+        max-height: 80vh;
+        object-fit: contain;
+        display: block;
+    }
+
+    .lightbox-caption {
+        margin-top: 14px;
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        text-align: right;
+    }
+
+    .lightbox-close {
+        position: absolute;
+        top: -44px;
+        right: 0;
+        background: none;
+        border: none;
+        color: var(--text);
+        font-family: 'Montserrat', sans-serif;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        cursor: pointer;
+        opacity: 0.55;
+        transition: opacity 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .lightbox-close::before { content: '×'; font-size: 23px; font-weight: 300; line-height: 1; }
+    .lightbox-close:hover { opacity: 1; }
 
     /* ============================================================
        STUDIO BANNER
@@ -1417,6 +1751,8 @@
         .contact-social-link:last-child { border-bottom: none; }
         .about-name-row { gap: 16px; }
         .studio-copy { padding: 0 24px; }
+        #showreel { height: 60vw; min-height: 220px; }
+        #photo-lightbox { padding: 60px 20px 20px; }
 
         #modal { padding: 20px; }
         .modal-close { top: -40px; }
@@ -1492,6 +1828,13 @@
 <!-- ============================================================
      NAV
      ============================================================ -->
+<!-- ============================================================
+     INTRO OVERLAY — plays once on load over the site
+     ============================================================ -->
+<div id="intro-overlay">
+    <p class="intro-tagline">Feeling is Believing</p>
+</div>
+
 <nav id="nav">
     <a href="#" class="nav-logo">AB<em>.</em></a>
     <ul class="nav-links">
@@ -1515,13 +1858,27 @@
 
 
 <!-- ============================================================
-     ABOUT — opening section
+     SHOWREEL VIDEO — full-screen autoplay loop, no controls
+     Replace Ha Why?_Final Music Video.mp4 with your actual showreel file
+     ============================================================ -->
+<section id="showreel">
+    <video autoplay muted loop playsinline>
+        <source src="media/01_Showreel_1920x1080/Ha Why?_Final Music Video.mp4" type="video/mp4">
+    </video>
+    <div class="showreel-overlay">
+        <span class="showreel-badge">Showreel</span>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     ABOUT
      ============================================================ -->
 <section id="about">
 
     <div class="about-left">
         <div class="about-photo-wrap">
-            <img src="brand_assets/Ananda_Primary.jpeg" alt="Ananda Bathena">
+            <img src="media/02_About_Portrait_600x900/Ananda_Primary.jpeg" alt="Ananda Bathena">
         </div>
 
     </div>
@@ -1544,13 +1901,13 @@
         </div>
         <p class="about-tagline">Sound Artist specializing in Music, Sound Design &amp; Virtual Reality</p>
         <p class="about-bio">
-            I hold a Bachelor's and Master's degree from the IDC School of Design, IIT Bombay. In my thesis projects, I have worked on exploring sound and music in film and virtual reality. My foundation in design thinking, filmmaking, and storytelling makes my approach to sound, unique.
+            Back in 2015, while I was in school, I had a crush on a girl. I did something stupid and wanted to say sorry, so I decided to make a song for her. Music has stayed with me ever since.
         </p>
         <p class="about-bio">
-            After graduating, I worked on a feature film as <strong>sound recordist and music composer</strong>, followed by composing and designing sound for the award-winning 6DoF VR experience <em>Into the Manhole</em> — recognised at FICCI BAF, Courant3D 2025, Laval Virtual and Busan International Short Film Festival. I am currently working on a <strong>science documentary</strong> as music composer and sound designer.
+            I hold a Bachelor's and Master's degree in Communication Design from the IDC School of Design, IIT Bombay. For my thesis projects, I explored sound and music in film and virtual reality. My foundation in design thinking, filmmaking, and storytelling makes my approach to sound unique.
         </p>
         <p class="about-bio">
-            Since 2022, I have been working full-time across music composition, sound design, and immersive audio — bringing a designer's precision and an artist's instinct to every project.
+            After my Master's, I worked as a sound recordist and music composer for the feature film <em>Safar Mein Sheher</em> by Mazhar Kamran, and <em>Into the Manhole</em>, a 6DOF VR narrative by Abhishek Verma and Jayesh Pillai. These were the building blocks of my journey in sound and music. Working with Mazhar Kamran and Sayeed Quadri on <em>Safar Mein Sheher</em> gave me insight into the Bollywood film industry and expertise in dealing with sound overall; meanwhile, <em>Into the Manhole</em> gave me a technical edge and acclaim across top film festivals.
         </p>
         <div class="about-badges">
             <div class="about-badge">Film Score</div>
@@ -1561,7 +1918,6 @@
     </div>
 
 </section>
-
 
 
 <!-- ============================================================
@@ -1858,6 +2214,18 @@
 
 
 <!-- ============================================================
+     PHOTO LIGHTBOX
+     ============================================================ -->
+<div id="photo-lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+    <div class="lightbox-inner">
+        <button class="lightbox-close" id="lightbox-close">Close</button>
+        <img class="lightbox-img" id="lightbox-img" src="" alt="">
+        <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
+</div>
+
+
+<!-- ============================================================
      VIDEO MODAL
      ============================================================ -->
 <div id="modal" role="dialog" aria-modal="true" aria-label="Video player">
@@ -1878,6 +2246,19 @@
      ============================================================ -->
 <section id="recognition">
 
+    <!-- Polaroid scatter gallery — JS builds & positions cards -->
+    <div class="pg-wrap">
+        <div class="pg-stage" id="pg-stage"></div>
+        <div class="pg-bar">
+            <div class="pg-status">
+                <div class="pg-status-dot" id="pg-sdot"></div>
+                <span id="pg-slbl">Auto-Playing</span>
+            </div>
+            <div class="pg-dots" id="pg-dots"></div>
+            <div class="pg-hint">Click to focus &nbsp;·&nbsp; click stage to release</div>
+        </div>
+    </div>
+
     <div class="news-grid">
 
         <!-- LEFT: Updates -->
@@ -1885,7 +2266,7 @@
             <h2 class="news-col-title">Updates</h2>
 
             <div class="news-item">
-                <img class="news-thumb" src="brand_assets/Ananda_FICCIBAF.jpeg" alt="Laval Virtual 2025" loading="lazy">
+                <img class="news-thumb" src="media/04_Updates/Gallery_Photos_1200px/photo_02.png" alt="Grand Prix award at Laval Virtual 2025" loading="lazy">
                 <div class="news-body">
                     <div class="news-title">Into the Manhole wins Grand Prix at Laval Virtual 2025</div>
                     <div class="news-date">April 2025 · Laval, France</div>
@@ -1894,7 +2275,7 @@
             </div>
 
             <div class="news-item">
-                <img class="news-thumb" src="brand_assets/Ananda_FICCIBAF.jpeg" alt="Courant3D 2025" loading="lazy">
+                <img class="news-thumb" src="media/04_Updates/Gallery_Photos_1200px/photo_03.jpeg" alt="Grand Prix certificate at Courant3D 2025" loading="lazy">
                 <div class="news-body">
                     <div class="news-title">Into the Manhole wins Grand Prix at Courant3D 2025</div>
                     <div class="news-date">2025 · France</div>
@@ -1903,7 +2284,7 @@
             </div>
 
             <div class="news-item">
-                <img class="news-thumb" src="brand_assets/Ananda_FICCIBAF.jpeg" alt="FICCI BAF Awards 2025" loading="lazy">
+                <img class="news-thumb" src="media/04_Updates/Gallery_Photos_1200px/photo_07.jpeg" alt="FICCI BAF Awards 2025, Mumbai" loading="lazy">
                 <div class="news-body">
                     <div class="news-title">Into the Manhole wins at FICCI BAF Awards</div>
                     <div class="news-date">March 27, 2025 · Mumbai</div>
@@ -1912,7 +2293,7 @@
             </div>
 
             <div class="news-item">
-                <img class="news-thumb" src="brand_assets/Ananda_JioMAMI.jpg" alt="Busan International Short Film Festival" loading="lazy">
+                <img class="news-thumb" src="media/04_Updates/Gallery_Photos_1200px/photo_04.jpg" alt="Busan International Short Film Festival" loading="lazy" style="object-position: top;">
                 <div class="news-body">
                     <div class="news-title">Into the Manhole screened at Busan International Short Film Festival</div>
                     <div class="news-date">2024 · Busan, South Korea</div>
@@ -1921,7 +2302,7 @@
             </div>
 
             <div class="news-item">
-                <div class="news-thumb-placeholder">🎵</div>
+                <img class="news-thumb" src="media/04_Updates/News_Thumbnails_400x400/safar_mein_sheher_thumb.jpeg" alt="Safar Mein Sheher film release event" loading="lazy">
                 <div class="news-body">
                     <div class="news-title">Safar Mein Sheher by Mazhar Kamran hits milestone views</div>
                     <div class="news-date">2024 · Desi Sangeeth</div>
@@ -1937,11 +2318,20 @@
             <h2 class="news-col-title">Workshops</h2>
 
             <div class="news-item">
-                <div class="news-thumb-placeholder">🎙</div>
+                <img class="news-thumb" src="media/04_Updates/Gallery_Photos_1200px/photo_09.png" alt="VR filmmaking camera setup" loading="lazy">
                 <div class="news-body">
-                    <div class="news-title">Add your workshop or course here</div>
-                    <div class="news-date">Date · Location</div>
-                    <p class="news-desc">Description of the workshop, masterclass, or course you led or participated in.</p>
+                    <div class="news-title">VR Filmmaking Workshop · IIT Jodhpur</div>
+                    <div class="news-date">Jayesh Pillai &amp; Ananda Bathena</div>
+                    <p class="news-desc">Understanding Spatial Audio and Immersion Techniques with Sound.</p>
+                </div>
+            </div>
+
+            <div class="news-item">
+                <img class="news-thumb" src="media/04_Updates/Gallery_Photos_1200px/photo_06.jpeg" alt="VR headset experience at NID screening" loading="lazy">
+                <div class="news-body">
+                    <div class="news-title">VR Filmmaking Workshop · NID Ahmedabad</div>
+                    <div class="news-date">Jayesh Pillai &amp; Ananda Bathena</div>
+                    <p class="news-desc">Understanding Spatial Audio and Immersion Techniques with Sound.</p>
                 </div>
             </div>
 
@@ -1956,7 +2346,7 @@
      STUDIO BANNER
      ============================================================ -->
 <section id="studio">
-    <img id="studio-img" src="brand_assets/Ananda_WorkingStill.jpeg"
+    <img id="studio-img" src="media/05_Studio_Banner_1920x1080/Ananda_WorkingStill.jpeg"
          class="studio-img" alt="Ananda Bathena in the recording studio" loading="lazy">
     <div class="studio-copy">
         <p class="studio-sub">As a designer and a sound artist, I overthink the music and sound. Because it is way too important for me to get it right. Let's together find that right sound and the right moment.</p>
@@ -2417,6 +2807,328 @@
         });
     }
 
+
+    /* ── PHOTO GALLERY ── */
+    const PHOTOS = [
+        {
+            src:      'media/04_Updates/Gallery_Photos_1200px/photo_01.jpeg',
+            title:    'FICCI BAF Awards 2025',
+            note:     'A defining night for Indian animation — honoured to be in this space.',
+            location: 'Mumbai, India',
+            t: 10, l:  6, r: -12
+        },
+        {
+            src:      'media/04_Updates/Gallery_Photos_1200px/photo_02.png',
+            title:    'Grand Prix · Laval Virtual',
+            note:     'Walking the stage at Laval. A surreal moment I\'ll never forget.',
+            location: 'Laval, France',
+            t:  8, l: 44, r:  7
+        },
+        {
+            src:      'media/04_Updates/Gallery_Photos_1200px/photo_03.jpeg',
+            title:    'Grand Prix · Courant3D',
+            note:     'Two Grand Prix in a month. The world was listening.',
+            location: 'France, 2025',
+            t: 14, l: 78, r: -5
+        },
+        {
+            src:      'media/04_Updates/Gallery_Photos_1200px/photo_04.jpg',
+            title:    'Busan Int\'l Short Film Fest',
+            note:     'Into the Manhole found its voice across borders.',
+            location: 'Busan, South Korea',
+            t: 38, l: 22, r: 11
+        },
+        {
+            src:      'media/04_Updates/Gallery_Photos_1200px/photo_05.jpg',
+            title:    'Jio MAMI Film Festival',
+            note:     'Cinema, stories, and the city I love.',
+            location: 'Mumbai, India',
+            t: 45, l: 65, r: -8
+        },
+        {
+            src:      'media/04_Updates/Gallery_Photos_1200px/photo_06.jpeg',
+            title:    'Screening · NID Alpavirama',
+            note:     'Back where it all began — returning to NID.',
+            location: 'Ahmedabad, India',
+            t: 62, l: 42, r:  5
+        },
+        {
+            src:      'media/04_Updates/Gallery_Photos_1200px/photo_07.jpeg',
+            title:    'Safar Mein Sheher',
+            note:     'The release event that marked a new chapter.',
+            location: 'India, 2024',
+            t: 58, l: 82, r: -10
+        },
+        {
+            src:      'media/04_Updates/Gallery_Photos_1200px/photo_08.png',
+            title:    'Screening at Laval Virtual',
+            note:     'The audience gasped. Then silence. Then applause.',
+            location: 'Laval, France',
+            t: 80, l: 14, r:  6
+        },
+        {
+            src:      'media/04_Updates/Gallery_Photos_1200px/photo_09.png',
+            title:    'VR Filmmaking Workshop',
+            note:     'Teaching the next wave of immersive storytellers.',
+            location: 'India',
+            t: 74, l: 58, r: -3
+        },
+    ];
+
+    (function initPhotoGallery() {
+        const stage  = document.getElementById('pg-stage');
+        const dotsEl = document.getElementById('pg-dots');
+        const sdot   = document.getElementById('pg-sdot');
+        const slbl   = document.getElementById('pg-slbl');
+
+        if (!stage) return;
+
+        /* ── Sizing constants ── */
+        const BASE_W   = 240;   // idle card image width (px)
+        const TEXT_ACT = 120;   // label area height when active (px)
+        const TEXT_IDL = 90;    // label area height when idle (px)
+        const PADD     = 9;     // polaroid top padding (px)
+
+        /* Natural aspect ratio (w/h) per photo, populated on image load */
+        const aspectRatios = new Array(PHOTOS.length).fill(null);
+
+        let activeIdx  = 0;
+        let hoveredIdx = -1;
+        let clickLock  = false;
+        const cards = [], dots = [];
+
+        /* ── Build cards ── */
+        PHOTOS.forEach((p, i) => {
+            const card = document.createElement('div');
+            card.className = 'pg-card';
+            card.innerHTML = `
+                <div class="pg-polaroid">
+                    <div class="pg-img-frame">
+                        <img src="${p.src}" alt="${p.title}" loading="${i < 4 ? 'eager' : 'lazy'}">
+                    </div>
+                    <div class="pg-sparkle"></div>
+                    <div class="pg-label">
+                        <div class="pg-title">${p.title}</div>
+                        <div class="pg-note">${p.note}</div>
+                        <div class="pg-location">
+                            <span class="pg-location-pin">📍</span>
+                            <span class="pg-location-text">${p.location}</span>
+                        </div>
+                    </div>
+                </div>`;
+
+            /* Track aspect ratio once image loads, then reposition */
+            const img = card.querySelector('img');
+            img.addEventListener('load', () => {
+                aspectRatios[i] = img.naturalWidth / img.naturalHeight;
+                if (!isMob()) applyStyle(card, getStyle(i));
+            });
+
+            stage.appendChild(card);
+            cards.push(card);
+
+            const dot = document.createElement('button');
+            dot.className = 'pg-dot';
+            dot.setAttribute('aria-label', `Photo ${i + 1}`);
+            dot.innerHTML = '<span class="pg-dot-inner"></span>';
+            dot.addEventListener('click', e => {
+                e.stopPropagation();
+                activeIdx = i; clickLock = true;
+                clearTimeout(autoTimer);
+                updateUI(); refreshAll(true);
+            });
+            dotsEl.appendChild(dot);
+            dots.push(dot);
+        });
+
+        /* ── Helpers ── */
+        const clamp = (v, lo, hi) => Math.max(lo, Math.min(v, hi));
+        const isMob = () => window.innerWidth <= 768;
+        const SW = () => stage.offsetWidth  || 900;
+        const SH = () => stage.offsetHeight || 700;
+
+        /* ── Compute pixel style for card i ── */
+        function getStyle(i) {
+            if (isMob()) return null;
+            const W = SW(), H = SH();
+            const p = PHOTOS[i];
+            const ratio = aspectRatios[i] || 1;
+
+            /* Active: fly to center, sized to image's natural aspect ratio */
+            if (i === activeIdx) {
+                const maxW = W * 0.52;
+                const maxH = H * 0.58;
+                let imgW, imgH;
+                if (ratio > maxW / maxH) {
+                    imgW = maxW; imgH = maxW / ratio;
+                } else {
+                    imgH = maxH; imgW = maxH * ratio;
+                }
+                const totalH = imgH + PADD + TEXT_ACT;
+                return { left:(W-imgW)/2, top:(H-totalH)/2, w:imgW, h:totalH, imgH, rot:0, sc:1, z:100, op:1 };
+            }
+
+            /* Idle: base width, height from ratio */
+            let w = BASE_W;
+            let imgH = BASE_W / ratio;
+            if (imgH > 280) { imgH = 280; w = 280 * ratio; }
+            const totalH = imgH + PADD + TEXT_IDL;
+
+            /* t/l are center percentages of the stage */
+            const origTop = p.t, origLeft = p.l;
+            let top = origTop, left = origLeft;
+            let sc = 1, z = 10 + i, op = 1;
+
+            /* Push cards outward when one is focused */
+            if (activeIdx >= 0) {
+                const dx = origLeft - 50;
+                const dy = origTop  - 50;
+                left = origLeft + dx * 0.35;
+                top  = origTop  + dy * 0.35;
+                if (i !== hoveredIdx) op = 0.45;
+            }
+            if (i === hoveredIdx) { sc = 1.15; z = 80; op = 1; }
+
+            /* Convert center-% to top-left px, then clamp (max 10% overflow) */
+            let lx = left / 100 * W - w / 2;
+            let ty = top  / 100 * H - totalH / 2;
+            lx = clamp(lx, 0, W - w);
+            ty = clamp(ty, 0, H - totalH);
+
+            return { left:lx, top:ty, w, h:totalH, imgH, rot:p.r, sc, z, op };
+        }
+
+        function applyStyle(card, s) {
+            if (!s) {
+                ['left','top','width','height','zIndex','opacity','transform'].forEach(k => card.style[k] = '');
+                const frame = card.querySelector('.pg-img-frame');
+                if (frame) frame.style.height = '';
+                return;
+            }
+            card.style.left      = s.left + 'px';
+            card.style.top       = s.top  + 'px';
+            card.style.width     = s.w    + 'px';
+            card.style.height    = s.h    + 'px';
+            card.style.zIndex    = s.z;
+            card.style.opacity   = s.op;
+            card.style.transform = `rotate(${s.rot}deg) scale(${s.sc})`;
+            const frame = card.querySelector('.pg-img-frame');
+            if (frame) frame.style.height = s.imgH + 'px';
+        }
+
+        function refreshAll(animate) {
+            cards.forEach((c, i) => {
+                c.classList.toggle('active', i === activeIdx);
+                if (animate) c.classList.add('pg-anim');
+                else         c.classList.remove('pg-anim');
+                applyStyle(c, getStyle(i));
+            });
+            dots.forEach((d, i) => d.classList.toggle('active', i === activeIdx && activeIdx >= 0));
+        }
+
+        function updateUI() {
+            const isPaused = clickLock || hoveredIdx >= 0;
+            sdot.classList.toggle('paused', isPaused);
+            slbl.textContent = isPaused ? 'Paused' : 'Auto-Playing';
+        }
+
+        /* ── Init: place cards instantly, then enable transitions ── */
+        refreshAll(false);
+        requestAnimationFrame(() => requestAnimationFrame(() =>
+            cards.forEach(c => c.classList.add('pg-anim'))
+        ));
+
+        /* ── Auto-timer (setTimeout so interaction delay is precise) ── */
+        let autoTimer = null;
+
+        function scheduleNext(ms) {
+            clearTimeout(autoTimer);
+            autoTimer = setTimeout(() => {
+                if (!clickLock && hoveredIdx < 0) {
+                    activeIdx = (activeIdx + 1) % PHOTOS.length;
+                    refreshAll(true);
+                    scheduleNext(3500);   // normal 3.5s between auto-advances
+                }
+                // If still paused, an interaction handler will call scheduleNext
+            }, ms);
+        }
+
+        scheduleNext(3500);   // initial kick-off
+
+        /* ── Card interactions ── */
+        cards.forEach((card, i) => {
+            card.addEventListener('mouseenter', () => {
+                hoveredIdx = i;
+                clearTimeout(autoTimer);  // pause while hovering
+                updateUI(); refreshAll(true);
+            });
+            card.addEventListener('mouseleave', () => {
+                hoveredIdx = -1;
+                updateUI(); refreshAll(true);
+                if (!clickLock) scheduleNext(10000);  // 10s grace after hover
+            });
+            /* Single click → center card; click stage to release */
+            card.addEventListener('click', e => {
+                e.stopPropagation();
+                activeIdx = i; clickLock = true;
+                clearTimeout(autoTimer);  // pause while a card is locked
+                updateUI(); refreshAll(true);
+            });
+        });
+
+        /* Click stage background → release focus, resume after 10s */
+        stage.addEventListener('click', () => {
+            activeIdx = -1; clickLock = false;
+            updateUI(); refreshAll(true);
+            scheduleNext(10000);
+        });
+
+        /* Resize */
+        window.addEventListener('resize', () => refreshAll(false), { passive: true });
+
+        /* Keep lightbox close handlers alive for Escape key */
+        const lightbox = document.getElementById('photo-lightbox');
+        const lbClose  = document.getElementById('lightbox-close');
+        if (lbClose) lbClose.addEventListener('click', () => {
+            lightbox.classList.remove('open');
+            document.body.style.overflow = '';
+        });
+        if (lightbox) lightbox.addEventListener('click', e => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+        });
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape' && lightbox && lightbox.classList.contains('open')) {
+                lightbox.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+        });
+    })();
+
+    /* ── INTRO OVERLAY ── */
+    (function () {
+        const overlay = document.getElementById('intro-overlay');
+        if (!overlay) return;
+
+        document.body.style.overflow = 'hidden';
+
+        function dismiss() {
+            overlay.style.transition = 'opacity 1s ease';
+            overlay.style.opacity    = '0';
+            setTimeout(() => {
+                overlay.remove();
+                document.body.style.overflow = '';
+            }, 1000);
+        }
+
+        /* 2s after page fully loads, then fade out over 1s */
+        window.addEventListener('load', () => setTimeout(dismiss, 2000));
+
+        /* Hard ceiling — never hang beyond 12s */
+        setTimeout(dismiss, 12000);
+    })();
 
     /* ── STUDIO PARALLAX ── */
     const studioSection = document.getElementById('studio');
