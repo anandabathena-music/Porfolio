@@ -705,11 +705,6 @@
     .gallery-controls { gap: 6px; }
     .gallery-controls .work-search-wrap { max-width: 100%; flex: 1 1 100%; }
 
-    /* Reduce Google reCAPTCHA badge size on mobile */
-    .grecaptcha-badge {
-        right: 5px !important;
-        bottom: 5px !important;
-      }
     }
 
     /* Each card */
@@ -1824,14 +1819,13 @@
         .work-results-count { display: none; }
     }
 
-    /* Desktop: hide mobile-only elements */
-    @media (min-width: 768px) {
-        .grecaptcha-badge {
-        transform: scale(0.55);
-        transform-origin: bottom right;
-        right: 5px !important;
-        bottom: 5px !important;
-    }
+  /* reCAPTCHA badge sizing */
+.grecaptcha-badge {
+    transform: scale(0.55);
+    transform-origin: bottom right;
+    right: 5px !important;
+    bottom: 5px !important;
+}
    @media (max-width: 767px) {
       .grecaptcha-badge {
          transform: scale(0.4) !important;
