@@ -1822,8 +1822,12 @@
     }
 
     /* Desktop: hide mobile-only elements */
-    @media (min-width: 769px) {
-        .view-more-mobile-btn { display: none; }
+    @media (min-width: 768px) {
+        .grecaptcha-badge {
+        transform: scale(0.55);
+        transform-origin: bottom right;
+        right: 5px !important;
+        bottom: 5px !important;
     }
 
     </style>
