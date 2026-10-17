@@ -707,8 +707,6 @@
 
     /* Reduce Google reCAPTCHA badge size on mobile */
     .grecaptcha-badge {
-        transform: scale(0.4) !important;
-        transform-origin: bottom right ! important;
         right: 5px !important;
         bottom: 5px !important;
       }
@@ -1834,7 +1832,14 @@
         right: 5px !important;
         bottom: 5px !important;
     }
-
+   @media (max-width: 767px) {
+      .grecaptcha-badge {
+         transform: scale(0.4) !important;
+         transform-origin: bottom right !important;
+         right: 5px !important;
+         bottom: 5px !important;
+    }
+}
     </style>
 </head>
 <body>
