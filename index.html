@@ -1227,14 +1227,10 @@
 }
     }
     .pg-card.active .pg-note {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 11px;
-    font-style: italic;
-    font-weight: 600;
-    color: #000000;
-    -webkit-line-clamp: 5;
-    line-clamp: 5;
-    opacity: 1;
+       font-size: 10px;
+      -webkit-line-clamp: 5;
+       line-clamp: 5;
+       opacity: 1;
     }
 
     /* Location pin — slides up when active */
@@ -2994,7 +2990,7 @@
                 const dy = origTop  - 50;
                 left = origLeft + dx * 0.35;
                 top  = origTop  + dy * 0.35;
-                if (i !== hoveredIdx) op = 0.45;
+                if (i !== hoveredIdx) op = 0.8;
             }
             if (i === hoveredIdx) { sc = 1.15; z = 80; op = 1; }
 
