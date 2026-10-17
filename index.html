@@ -701,9 +701,17 @@
     }
 
     @media (max-width: 768px) {
-        .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-        .gallery-controls { gap: 6px; }
-        .gallery-controls .work-search-wrap { max-width: 100%; flex: 1 1 100%; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-controls { gap: 6px; }
+    .gallery-controls .work-search-wrap { max-width: 100%; flex: 1 1 100%; }
+
+    /* Reduce Google reCAPTCHA badge size on mobile */
+    .grecaptcha-badge {
+        transform: scale(0.4) !important;
+        transform-origin: bottom right ! important;
+        right: 5px !important;
+        bottom: 5px !important;
+      }
     }
 
     /* Each card */
