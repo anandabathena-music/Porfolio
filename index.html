@@ -1206,7 +1206,14 @@
         line-height: 1;
         flex-shrink: 0;
     }
-
+/* Show the full title on the Chill Intensity card */
+ .pg-card.chill-intensity-card .pg-title {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    line-height: 1.2;
+}
+        
         /* Elegant editorial caption — Cormorant Garamond */
 .pg-note {
    font-family: 'Cormorant Garamond', serif;
@@ -2895,7 +2902,7 @@
         /* ── Build cards ── */
         PHOTOS.forEach((p, i) => {
             const card = document.createElement('div');
-            card.className = 'pg-card';
+            card.className = 'pg-card' + (i === 1 ? ' chill-intensity-card' : '');
             card.innerHTML = `
                 <div class="pg-polaroid">
                     <div class="pg-img-frame">
@@ -2904,12 +2911,9 @@
                     <div class="pg-sparkle"></div>
                     <div class="pg-label">
                         <div class="pg-title">${p.title}</div>
-                        <div class="pg-note">${p.note}</div>
-                        <div class="pg-location">
-                            <span class="pg-location-pin">📍</span>
-                            <span class="pg-location-text">${p.location}</span>
-                        </div>
-                    </div>
+                        <div class="pg-note">${p.note}</div>  
+                    ${p.location ? '<div class="pg-location"><span class="pg-location-pin">📍</span><span class="pg-location-text">' + p.location + '</span></div>' : ''}
+           </div>
                 </div>`;
 
             /* Track aspect ratio once image loads, then reposition */
@@ -2964,9 +2968,13 @@
             }
 
             /* Idle: base width, height from ratio */
-            let w = BASE_W;
-            let imgH = BASE_W / ratio;
-            if (imgH > 280) { imgH = 280; w = 280 * ratio; }
+           let w = i === 1 ? BASE_W * 1.2 : BASE_W;
+             let imgH = w / ratio;
+
+            if (imgH > 280) {
+                imgH = 280;
+                w = imgH * ratio;
+        }
             const totalH = imgH + PADD + TEXT_IDL;
 
             /* t/l are center percentages of the stage */
