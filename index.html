@@ -1835,6 +1835,41 @@
 #studio {
     display: none !important;
 }
+
+ 
+/* P1 FIX: Keep photo gallery cards and titles within mobile width */
+@media (max-width: 480px) {
+    #recognition,
+    .pg-wrap,
+    .pg-stage,
+    .pg-card,
+    .pg-polaroid {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+     .pg-img-frame img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+    }
+    .pg-card {
+        overflow: hidden;
+    }
+
+    .pg-title {
+        white-space: normal;
+        overflow-wrap: anywhere;
+        text-overflow: clip;
+        line-height: 1.25;
+    }
+
+    .pg-label {
+        min-width: 0;
+    }
+}
+
     </style>
 </head>
 <body>
