@@ -1870,6 +1870,36 @@
     }
 }
 
+/* P2 FIX: Preserve photo proportions on mobile */
+@media (max-width: 480px) {
+    .pg-card {
+        height: auto !important;
+        min-height: 0;
+    }
+
+    .pg-polaroid {
+        height: auto;
+    }
+
+    .pg-img-frame {
+        height: auto !important;
+        background: transparent;
+    }
+
+    .pg-img-frame img {
+        display: block;
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+        object-fit: initial;
+    }
+
+    .pg-label {
+        flex: none;
+        overflow: visible;
+    }
+}
+
     </style>
 </head>
 <body>
